@@ -9,7 +9,7 @@
 }
 .header h1 {
   font-size: 24px;
-  color: #ff90bb;
+  color: #067ad8;
 }
 
 .header ul {
@@ -19,13 +19,13 @@
 }
 
 .header .nav-item {
-  padding: 25px 18px;
+  padding: 10px 18px;
   font-size: 18px;
   text-decoration: none;
   color: black;
 }
 .header .nav-item:hover {
-  color: #ff90bb;
+  color: #067ad8;
 }
 .header .btn {
   padding: 10px 20px;
@@ -35,7 +35,7 @@
   color: black;
 }
 .header .btn:hover {
-  color: #ff90bb;
+  color: #067ad8;
 }
 .header .reg-btn {
   padding: 10px 20px;
@@ -47,6 +47,6 @@
   cursor: pointer;
 }
 .header .reg-btn:hover {
-  background-color: #ff90bb;
+  background-color: #067ad8;
   color: white;
 }

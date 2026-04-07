@@ -1,14 +1,157 @@
 .container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 50px auto;
 }
 .create-post {
-  margin: 20px 0;
   text-align: right;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  background-color: #b5def8;
+  border-radius: 8px;
+  padding: 20px;
 }
 .create-post .avt {
   border-radius: 50%;
+}
+.create-post input {
+  flex: 1;
+  margin: 0 20px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #d8ebf7;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal-content {
+  background-color: #fcfcf1;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 800px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  background-color: transparent;
+  display: flex;
+  justify-content: flex-end;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal-content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  color: #067ad8;
+}
+.title {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+.title label {
+  margin-bottom: 5px;
+}
+.title input {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #d8e5ee;
+}
+.content {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+.content label {
+  margin-bottom: 5px;
+}
+.content textarea {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #d8e5ee;
+  resize: vertical;
+  height: 100px;
+}
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.modal-footer .submit-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #067ad8;
+  color: white;
+  cursor: pointer;
+}
+.modal-footer .submit-btn:hover {
+  background-color: #005ca7;
+}
+.modal-footer .cancel-btn {
+  margin-left: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: transparent;
+  border: solid 1px black;
+  color: black;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.modal-footer .cancel-btn:hover {
+  background-color: #067ad8;
+  color: white;
+  border-color: white;
+}
+#posts {
+  margin-top: 30px;
+}
+.post {
+  background-color: #b5def8;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.post .title {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #067ad8;
+}
+.post .content {
+  font-size: 16px;
+  color: #333;
 }
