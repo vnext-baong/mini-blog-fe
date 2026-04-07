@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mini Blog</title>
     <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Playwrite+IE:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div id="header"></div>
@@ -18,16 +24,37 @@
             height="60"
             class="avt"
           />
-          <input type="text" placeholder="Tạo bài viết" class="" />
+          <input
+            type="text"
+            placeholder="Tạo bài viết..."
+            readonly
+            onclick="openModal()"
+          />
         </div>
+        <div id="posts"></div>
         <div class="modal">
           <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" onclick="closeModal()">&times;</span>
             <h2>Tạo bài viết mới</h2>
-            <input type="text" placeholder="Tiêu đề bài viết..." />
-            <textarea placeholder="Viết nội dung bài viết..."></textarea>
-            <button class="submit-btn">Đăng</button>
-            <button class="cancel-btn">Hủy</button>
+            <div class="title">
+              <label for="post-title">Tiêu đề bài viết:</label>
+              <input
+                type="text"
+                id="post-title"
+                placeholder="Nhập tiêu đề bài viết..."
+              />
+            </div>
+            <div class="content">
+              <label for="post-content">Nội dung bài viết:</label>
+              <textarea
+                id="post-content"
+                placeholder="Viết nội dung bài viết..."
+              ></textarea>
+            </div>
+            <div class="modal-footer">
+              <button class="submit-btn">Đăng</button>
+              <button class="cancel-btn" onclick="closeModal()">Hủy</button>
+            </div>
           </div>
         </div>
       </div>
