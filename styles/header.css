@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 1px solid;
+}
+.header h1 {
+  font-size: 24px;
+  color: #ff90bb;
+}
+
+.header ul {
+  display: flex;
+  list-style: none;
+  color: black;
+}
+
+.header .nav-item {
+  padding: 25px 18px;
+  font-size: 18px;
+  text-decoration: none;
+  color: black;
+}
+.header .nav-item:hover {
+  color: #ff90bb;
+}
+.header .btn {
+  padding: 10px 20px;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+}
+.header .btn:hover {
+  color: #ff90bb;
+}
+.header .reg-btn {
+  padding: 10px 20px;
+  font-size: 18px;
+  text-decoration: none;
+  border: 1px solid;
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+}
+.header .reg-btn:hover {
+  background-color: #ff90bb;
+  color: white;
+}

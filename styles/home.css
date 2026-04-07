@@ -1,0 +1,14 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.create-post {
+  margin: 20px 0;
+  text-align: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.create-post .avt {
+  border-radius: 50%;
+}
