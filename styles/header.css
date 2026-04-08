@@ -50,3 +50,24 @@
   background-color: #067ad8;
   color: white;
 }
+.header .active {
+  color: #067ad8;
+}
+.header .active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #067ad8;
+}
+.logout-btn {
+  padding: 10px 20px;
+  font-size: 18px;
+  text-decoration: none;
+  border: 1px solid;
+  border-radius: 8px;
+  background-color: transparent;
+  cursor: pointer;
+}
