@@ -2,12 +2,25 @@
   <h1>Mini Blog</h1>
   <nav>
     <ul>
-      <li><a href="/" class="nav-item">Trang chủ</a></li>
+      <li><a href="/" class="nav-item active">Trang chủ</a></li>
       <li><a href="/posts" class="nav-item">Posts</a></li>
     </ul>
   </nav>
-  <div class="right-header">
-    <a href="/login" class="btn">Đăng nhập</a>
-    <a href="/register" class="btn reg-btn">Đăng ký</a>
-  </div>
+  <div class="right-header"></div>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const token = localStorage.getItem("token");
+      const rightHeader = document.querySelector(".right-header");
+      if (token) {
+        rightHeader.innerHTML = `
+          <button class="btn logout-btn">Đăng xuất</button>
+        `;
+      } else {
+        rightHeader.innerHTML = `
+          <a href="/login.html" class="btn">Đăng nhập</a>
+          <a href="/pages/register.html" class="btn reg-btn">Đăng ký</a>
+        `;
+      }
+    });
+  </script>
 </div>
