@@ -1,7 +1,8 @@
 async function LoadLayout() {
-  const headerResponse = await fetch("/components/header.html");
+  const headerResponse = await fetch("./components/header.html");
   const headerData = await headerResponse.text();
   document.getElementById("header").innerHTML = headerData;
+  stateRightHeader();
   hightLightCurrentPage();
 }
 function hightLightCurrentPage() {
@@ -17,6 +18,25 @@ function hightLightCurrentPage() {
   });
 }
 
+function stateRightHeader() {
+  const rightHeader = document.querySelector(".right-header");
+  const token = localStorage.getItem("token");
+  if (token) {
+    rightHeader.innerHTML = `
+      <a href="#" class="nav-item" id="logout">Đăng xuất</a>
+    `;
+    document.getElementById("logout").addEventListener("click", () => {
+      localStorage.removeItem("token");
+      stateRightHeader();
+      showToast("success", "Đã đăng xuất thành công!");
+    });
+  } else {
+    rightHeader.innerHTML = `
+       <a href="/login.html" class="btn">Đăng nhập</a>
+       <a href="/pages/register.html" class="btn reg-btn">Đăng ký</a>
+    `;
+  }
+}
 window.onload = LoadLayout;
 
 function openModal() {

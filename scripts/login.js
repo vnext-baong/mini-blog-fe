@@ -34,7 +34,7 @@ async function login() {
       showToast("success", "Đăng nhập thành công!");
       setTimeout(() => {
         window.location.href = "index.html";
-      }, 2000);
+      }, 1000);
     } else {
       showToast(
         "error",
@@ -45,3 +45,34 @@ async function login() {
     showToast("error", "Đăng nhập thất bại. Vui lòng thử lại.");
   }
 }
+
+function togglePassword() {
+  const passwordInput = document.getElementById("password");
+  const toggleBtn = document.querySelector(".toggle-password");
+
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    toggleBtn.innerHTML = `<img
+                src="./assets/icons/show.png"
+                alt="Toggle Password"
+                height="20"
+                width="20"
+              />`;
+  } else {
+    passwordInput.type = "password";
+    toggleBtn.innerHTML = `<img
+                src="./assets/icons/hide.png"
+                alt="Toggle Password"
+                height="20"
+                width="20"
+              />`;
+  }
+}
+document.querySelector(".toggle-password").innerHTML = `
+ <img
+                src="./assets/icons/hide.png"
+                alt="Toggle Password"
+                height="20"
+                width="20"
+              />
+`;
