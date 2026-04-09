@@ -7,20 +7,4 @@
     </ul>
   </nav>
   <div class="right-header"></div>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const token = localStorage.getItem("token");
-      const rightHeader = document.querySelector(".right-header");
-      if (token) {
-        rightHeader.innerHTML = `
-          <button class="btn logout-btn">Đăng xuất</button>
-        `;
-      } else {
-        rightHeader.innerHTML = `
-          <a href="/login.html" class="btn">Đăng nhập</a>
-          <a href="/pages/register.html" class="btn reg-btn">Đăng ký</a>
-        `;
-      }
-    });
-  </script>
 </div>
