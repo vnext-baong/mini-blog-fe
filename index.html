@@ -32,6 +32,16 @@
           />
         </div>
         <div id="posts"></div>
+        <div class="pagination">
+          <select>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+          </select>
+          <button class="prev-btn btn" onclick="prevPage()">‹</button>
+          <span id="page-info"></span>
+          <button class="next-btn btn" onclick="nextPage()">›</button>
+        </div>
         <div class="modal">
           <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
