@@ -23,12 +23,13 @@ function stateRightHeader() {
   const token = localStorage.getItem("token");
   if (token) {
     rightHeader.innerHTML = `
+      <span class="user-name">Xin chào, ${JSON.parse(localStorage.getItem("user")).name}</span>
       <a href="#" class="nav-item" id="logout">Đăng xuất</a>
     `;
     document.getElementById("logout").addEventListener("click", () => {
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
       stateRightHeader();
-      showToast("success", "Đã đăng xuất thành công!");
     });
   } else {
     rightHeader.innerHTML = `

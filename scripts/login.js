@@ -32,6 +32,8 @@ async function login() {
     const data = await response.json();
     if (response.ok) {
       localStorage.setItem("token", data.accessToken);
+      const userData = await getMe(data.accessToken);
+      localStorage.setItem("user", JSON.stringify(userData));
       showToast("success", "Đăng nhập thành công!");
       setTimeout(() => {
         window.location.href = "index.html";
@@ -81,4 +83,24 @@ if (loginTogglePassword) {
                 width="20"
               />
 `;
+}
+
+async function getMe(token) {
+  if (!token) return null;
+  try {
+    const response = await fetch("http://localhost:3000/users/me", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to fetch user info");
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return null;
+  }
 }
