@@ -33,7 +33,7 @@ function stateRightHeader() {
   } else {
     rightHeader.innerHTML = `
        <a href="/login.html" class="btn">Đăng nhập</a>
-       <a href="/pages/register.html" class="btn reg-btn">Đăng ký</a>
+       <a href="/register.html" class="btn reg-btn">Đăng ký</a>
     `;
   }
 }

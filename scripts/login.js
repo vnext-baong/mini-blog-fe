@@ -1,23 +1,24 @@
 async function login() {
-  const username = document.getElementById("username").value;
+  const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value;
-  if (!username && !password) {
+
+  document.getElementById("username-error").textContent = "";
+  document.getElementById("password-error").textContent = "";
+
+  let hasError = false;
+  if (!username) {
     document.getElementById("username-error").textContent =
       "Vui lòng nhập tên đăng nhập";
+    hasError = true;
+  }
+  if (!password) {
     document.getElementById("password-error").textContent =
       "Vui lòng nhập mật khẩu";
+    hasError = true;
+  }
+
+  if (hasError) {
     return;
-  } else if (!username) {
-    document.getElementById("username-error").textContent =
-      "Vui lòng nhập tên đăng nhập";
-    return;
-  } else if (!password) {
-    document.getElementById("password-error").textContent =
-      "Vui lòng nhập mật khẩu";
-    return;
-  } else {
-    document.getElementById("username-error").textContent = "";
-    document.getElementById("password-error").textContent = "";
   }
 
   try {
@@ -49,6 +50,7 @@ async function login() {
 function togglePassword() {
   const passwordInput = document.getElementById("password");
   const toggleBtn = document.querySelector(".toggle-password");
+  if (!passwordInput || !toggleBtn) return;
 
   if (passwordInput.type === "password") {
     passwordInput.type = "text";
@@ -68,7 +70,10 @@ function togglePassword() {
               />`;
   }
 }
-document.querySelector(".toggle-password").innerHTML = `
+
+const loginTogglePassword = document.querySelector(".toggle-password");
+if (loginTogglePassword) {
+  loginTogglePassword.innerHTML = `
  <img
                 src="./assets/icons/hide.png"
                 alt="Toggle Password"
@@ -76,3 +81,4 @@ document.querySelector(".toggle-password").innerHTML = `
                 width="20"
               />
 `;
+}
