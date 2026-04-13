@@ -193,3 +193,36 @@ function showToast(type, message) {
     }, 300);
   }, duration);
 }
+
+async function submitPost() {
+  const title = document.getElementById("post-title").value;
+  const content = document.getElementById("post-content").value;
+  const token = localStorage.getItem("token");
+  const userId = JSON.parse(localStorage.getItem("user")).id;
+  if (!token) {
+    showToast("error", "Bạn cần đăng nhập để đăng bài viết");
+    return;
+  }
+  const body = {
+    title: title,
+    content: content,
+    authorId: userId,
+  };
+  try {
+    const res = await fetch(`${API_URL}/posts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(body),
+    });
+    if (res.ok) {
+      showToast("success", "Đăng bài viết thành công!");
+      closeModal();
+      getPosts(document.querySelector(".pagination select").value, currentPage);
+    }
+  } catch (error) {
+    showToast("error", error);
+  }
+}
