@@ -145,6 +145,7 @@
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 .post .title {
   font-size: 20px;

@@ -41,6 +41,10 @@ function stateRightHeader() {
 window.onload = LoadLayout;
 
 function openModal() {
+  if (!localStorage.getItem("token")) {
+    showToast("error", "Bạn cần đăng nhập để đăng bài viết");
+    return;
+  }
   const modal = document.querySelector(".modal");
   modal.style.display = "block";
 }
@@ -71,9 +75,12 @@ function getPosts(limit = 5, page = 1) {
         <p class='created-at'>${new Date(post.createdAt).toLocaleString()}</p>
         </div>
           <h2 class='title'>${post.title}</h2>
-          <p class='content'>${post.content}</p>
+          <p class='content'>${post.content.substring(0, 100)}...</p>
         `;
         postsContainer.appendChild(postElement);
+        postElement.addEventListener("click", () => {
+          window.location.href = `/post-detail.html?slug=${post.slug}`;
+        });
       });
     });
 }
