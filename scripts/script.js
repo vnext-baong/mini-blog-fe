@@ -6,8 +6,7 @@ async function LoadLayout() {
   hightLightCurrentPage();
 }
 function hightLightCurrentPage() {
-  const currentPath =
-    window.location.pathname.pathname.split("/").pop() || "index.html";
+  const currentPath = window.location.pathname.split("/").pop() || "index.html";
   const navLinks = document.querySelectorAll(".nav-item");
   navLinks.forEach((link) => {
     if (link.getAttribute("href") === currentPath) {
@@ -61,6 +60,7 @@ function getPosts(limit = 5, page = 1) {
     .then((response) => response.json())
     .then((data) => {
       const postsContainer = document.getElementById("posts");
+      if (!postsContainer) return;
       postsContainer.innerHTML = "";
       renderPagination(data.total, limit, page);
       data.items.forEach((post) => {
@@ -130,10 +130,12 @@ document.addEventListener("DOMContentLoaded", () => {
   getPosts();
 });
 const limitSelect = document.querySelector(".pagination select");
-limitSelect.addEventListener("change", () => {
-  currentPage = 1;
-  getPosts(limitSelect.value, currentPage);
-});
+if (limitSelect) {
+  limitSelect.addEventListener("change", () => {
+    currentPage = 1;
+    getPosts(limitSelect.value, currentPage);
+  });
+}
 
 function showToast(type, message) {
   const toast = document.createElement("div");
