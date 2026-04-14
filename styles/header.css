@@ -73,3 +73,58 @@
   background-color: transparent;
   cursor: pointer;
 }
+.menu {
+  display: none;
+}
+
+@media only screen and (max-width: 1400px) {
+}
+@media only screen and (max-width: 1200px) {
+  .container {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .container {
+    width: 95%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: 0 10px;
+  }
+  .right-header {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .menu-toggle svg {
+    width: 24px;
+    height: 24px;
+    fill: #067ad8;
+  }
+  .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 57px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  .menu .menu-item {
+    padding: 10px 0;
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+  }
+}

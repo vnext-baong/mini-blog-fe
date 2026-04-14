@@ -22,7 +22,7 @@ async function login() {
   }
 
   try {
-    const response = await fetch("http://localhost:3000/auth/login", {
+    const response = await fetch(`${API_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -88,7 +88,7 @@ if (loginTogglePassword) {
 async function getMe(token) {
   if (!token) return null;
   try {
-    const response = await fetch("http://localhost:3000/users/me", {
+    const response = await fetch(`${API_URL}/users/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

@@ -209,3 +209,21 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+@media only screen and (max-width: 1400px) {
+}
+@media only screen and (max-width: 1200px) {
+  .modal-content {
+    max-width: 800px;
+    position: relative;
+    width: 90%;
+    top: 10%;
+  }
+}
+@media only screen and (max-width: 1024) {
+}
+@media only screen and (max-width: 768px) {
+  .modal-content {
+    width: 100%;
+  }
+}
