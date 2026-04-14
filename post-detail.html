@@ -16,6 +16,27 @@
     <main>
       <div class="container">
         <div id="post-detail" class="post-detail"></div>
+        <div class="comments">
+          <h2>Bình luận</h2>
+          <div class="comment-container">
+            <img
+              src="./assets/img/avt.jpg"
+              alt="avt"
+              width="40"
+              height="40"
+              class="avt"
+            />
+            <input
+              type="text"
+              id="comment-input"
+              placeholder="Viết bình luận..."
+            />
+            <button id="submit-comment" class="btn" onclick="postComment()">
+              Gửi
+            </button>
+          </div>
+          <div id="comments-list" class="comments-list"></div>
+        </div>
       </div>
     </main>
     <script src="./scripts/script.js"></script>

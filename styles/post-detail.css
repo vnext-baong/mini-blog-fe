@@ -31,3 +31,64 @@
   line-height: 1.6;
   margin-bottom: 20px;
 }
+.comments {
+  margin-top: 30px;
+  background-color: rgb(211, 228, 238);
+  padding: 12px;
+  border-radius: 8px;
+}
+.comment-container {
+  margin: 20px 0px;
+  display: flex;
+  justify-content: space-around;
+}
+.comment-container img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.comment-container input {
+  width: 85%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #d8ebf7;
+}
+.comment-container .btn {
+  padding: 10px 20px;
+  background-color: #067ad8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.comment-container .btn:hover {
+  background-color: #055a9c;
+}
+.comments-list {
+  margin-top: 20px;
+}
+.comments-list .comment {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.comment-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.comment-header .avatar {
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.comment-header .comment-author {
+  font-weight: bold;
+  margin-right: 10px;
+}
+.comment-header .comment-created-at {
+  font-size: 12px;
+  color: #888;
+}
