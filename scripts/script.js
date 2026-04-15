@@ -32,8 +32,8 @@ function stateRightHeader() {
     });
   } else {
     rightHeader.innerHTML = `
-       <a href="/login.html" class="btn">Đăng nhập</a>
-       <a href="/register.html" class="btn reg-btn">Đăng ký</a>
+       <a href="login.html" class="btn">Đăng nhập</a>
+       <a href="register.html" class="btn reg-btn">Đăng ký</a>
     `;
   }
 }
@@ -51,7 +51,6 @@ function closeModal() {
   const modal = document.querySelector(".modal");
   modal.style.display = "none";
 }
-const API_URL = "http://localhost:3000";
 let currentPage = 1;
 let totalPage = 1;
 
@@ -79,7 +78,7 @@ function getPosts(limit = 5, page = 1) {
         `;
         postsContainer.appendChild(postElement);
         postElement.addEventListener("click", () => {
-          window.location.href = `/post-detail.html?slug=${post.slug}`;
+          window.location.href = `post-detail.html?slug=${post.slug}`;
         });
       });
     });
@@ -234,4 +233,9 @@ async function submitPost() {
   } catch (error) {
     showToast("error", error);
   }
+}
+
+function displayMenu() {
+  const menu = document.querySelector(".menu");
+  menu.style.display = menu.style.display === "flex" ? "none" : "flex";
 }
