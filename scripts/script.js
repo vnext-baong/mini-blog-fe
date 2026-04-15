@@ -68,7 +68,7 @@ function getPosts(limit = 5, page = 1) {
         postElement.innerHTML = `
         <div class='post-header'>
         <div class='author-info'>
-        <img src='../assets/img/avt.jpg' alt='Avatar' class='avatar' height='50' width='50'/  >
+        <img src='./assets/img/avt.jpg' alt='Avatar' class='avatar' height='50' width='50'/  >
         <h3 class='author'>${post.author.name}</h3>
           </div>
         <p class='created-at'>${new Date(post.createdAt).toLocaleString()}</p>
