@@ -206,6 +206,11 @@ function showToast(type, message) {
   }, duration);
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  validateInput(document.getElementById("post-title"));
+  validateInput(document.getElementById("post-content"));
+});
+
 async function submitPost() {
   const title = document.getElementById("post-title").value;
   const content = document.getElementById("post-content").value;
