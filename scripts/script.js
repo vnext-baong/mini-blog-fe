@@ -75,7 +75,7 @@ function getPosts(limit = 5, page = 1) {
         <img src='./assets/img/avt.jpg' alt='Avatar' class='avatar' height='50' width='50'/  >
         <h3 class='author'>${post.author.name}</h3>
           </div>
-        <p class='created-at'>${new Date(post.createdAt).toLocaleString()}</p>
+        <p class='created-at'>${formatTimeAgo(post.createdAt)}</p>
         </div>
           <h2 class='title'>${post.title}</h2>
           <p class='content'>${post.content.substring(0, 100)}...</p>

@@ -32,3 +32,27 @@ const validateInput = (inputElement) => {
     }
   });
 };
+
+const formatTimeAgo = (timestamp) => {
+  const now = new Date();
+  const postDate = new Date(timestamp);
+  const diffInSeconds = Math.floor((now - postDate) / 1000);
+
+  const intervals = [
+    { label: "năm", seconds: 31536000 },
+    { label: "tháng", seconds: 2592000 },
+    { label: "ngày", seconds: 86400 },
+    { label: "giờ", seconds: 3600 },
+    { label: "phút", seconds: 60 },
+    { label: "giây", seconds: 1 },
+  ];
+
+  for (const interval of intervals) {
+    const count = Math.floor(diffInSeconds / interval.seconds);
+    if (count >= 1) {
+      return `${count} ${interval.label} trước`;
+    }
+  }
+
+  return "vừa xong";
+};
