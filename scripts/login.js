@@ -1,10 +1,14 @@
+document.addEventListener("DOMContentLoaded", () => {
+  validateInput(document.getElementById("username"));
+  validateInput(document.getElementById("password"));
+});
+
 async function login() {
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value;
 
   document.getElementById("username-error").textContent = "";
   document.getElementById("password-error").textContent = "";
-
   let hasError = false;
   if (!username) {
     document.getElementById("username-error").textContent =
@@ -16,7 +20,6 @@ async function login() {
       "Vui lòng nhập mật khẩu";
     hasError = true;
   }
-
   if (hasError) {
     return;
   }

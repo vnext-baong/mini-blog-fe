@@ -50,6 +50,10 @@ async function getComments() {
   }
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  validateInput(document.getElementById("comment-input"));
+});
+
 async function postComment() {
   const sendBtn = document.getElementById("submit-comment");
   const commentInput = document.getElementById("comment-input");

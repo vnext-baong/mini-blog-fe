@@ -1,3 +1,10 @@
+document.addEventListener("DOMContentLoaded", () => {
+  validateInput(document.getElementById("username"));
+  validateInput(document.getElementById("name"));
+  validateInput(document.getElementById("password"));
+  validateInput(document.getElementById("confirm-password"));
+});
+
 async function register() {
   const username = document.getElementById("username").value.trim();
   const name = document.getElementById("name").value.trim();
@@ -26,6 +33,16 @@ async function register() {
   if (!password) {
     document.getElementById("password-error").textContent =
       "Vui lòng nhập mật khẩu";
+    hasError = true;
+  }
+  if (password && password.length < 6) {
+    document.getElementById("password-error").textContent =
+      "Mật khẩu phải có ít nhất 6 ký tự";
+    hasError = true;
+  }
+  if (password && !/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(password)) {
+    document.getElementById("password-error").textContent =
+      "Mật khẩu phải có ít nhất 1 chữ in hoa, 1 chữ thường và 1 chữ số";
     hasError = true;
   }
 
