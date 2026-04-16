@@ -50,6 +50,10 @@ function openModal() {
 function closeModal() {
   const modal = document.querySelector(".modal");
   modal.style.display = "none";
+  const titleInput = document.getElementById("post-title");
+  const contentInput = document.getElementById("post-content");
+  titleInput.value = "";
+  contentInput.value = "";
 }
 let currentPage = 1;
 let totalPage = 1;
@@ -216,6 +220,11 @@ async function submitPost() {
     content: content,
     authorId: userId,
   };
+  const cancelBtn = document.querySelector(".cancel-btn");
+  const submitBtn = document.querySelector(".submit-btn");
+  cancelBtn.disabled = true;
+  btnLoading.start(submitBtn);
+
   try {
     const res = await fetch(`${API_URL}/posts`, {
       method: "POST",
@@ -232,6 +241,9 @@ async function submitPost() {
     }
   } catch (error) {
     showToast("error", error);
+  } finally {
+    btnLoading.stop(submitBtn);
+    cancelBtn.disabled = false;
   }
 }
 

@@ -62,7 +62,10 @@
               ></textarea>
             </div>
             <div class="modal-footer">
-              <button class="submit-btn" onclick="submitPost()">Đăng</button>
+              <button class="submit-btn" onclick="submitPost()">
+                <span>Đăng</span>
+                <div class="loader"></div>
+              </button>
               <button class="cancel-btn" onclick="closeModal()">Hủy</button>
             </div>
           </div>
@@ -70,6 +73,7 @@
       </div>
     </main>
     <!-- <div id="footer"></div> -->
+    <script src="./scripts/loading.js"></script>
     <script src="./scripts/config.js"></script>
     <script src="./scripts/script.js"></script>
   </body>
