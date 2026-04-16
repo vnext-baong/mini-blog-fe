@@ -51,6 +51,10 @@ async function getComments() {
 }
 
 async function postComment() {
+  const sendBtn = document.getElementById("submit-comment");
+  const commentInput = document.getElementById("comment-input");
+  sendBtn.disabled = true;
+  btnLoading.start(sendBtn);
   try {
     const commentInput = document.getElementById("comment-input");
     const token = localStorage.getItem("token");
@@ -84,5 +88,8 @@ async function postComment() {
     }
   } catch (error) {
     showToast("error", "Bình luận thất bại");
+  } finally {
+    btnLoading.stop(sendBtn);
+    sendBtn.disabled = false;
   }
 }

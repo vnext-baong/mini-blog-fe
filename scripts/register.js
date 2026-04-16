@@ -44,7 +44,7 @@ async function register() {
   if (hasError) {
     return;
   }
-
+  btnLoading.start(document.querySelector(".submit-btn"));
   try {
     const response = await fetch(`${API_URL}/auth/register`, {
       method: "POST",
@@ -64,6 +64,8 @@ async function register() {
     }
   } catch (error) {
     showToast("error", "Đăng ký thất bại. Vui lòng thử lại.");
+  } finally {
+    btnLoading.stop(document.querySelector(".submit-btn"));
   }
 }
 

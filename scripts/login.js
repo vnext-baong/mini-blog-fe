@@ -20,7 +20,7 @@ async function login() {
   if (hasError) {
     return;
   }
-
+  btnLoading.start(document.querySelector(".submit-btn"));
   try {
     const response = await fetch(`${API_URL}/auth/login`, {
       method: "POST",
@@ -46,6 +46,8 @@ async function login() {
     }
   } catch (error) {
     showToast("error", "Đăng nhập thất bại. Vui lòng thử lại.");
+  } finally {
+    btnLoading.stop(document.querySelector(".submit-btn"));
   }
 }
 
