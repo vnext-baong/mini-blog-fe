@@ -34,7 +34,8 @@ async function login() {
     });
     const data = await response.json();
     if (response.ok) {
-      localStorage.setItem("token", data.accessToken);
+      document.cookie = `ac=${data.accessToken}; path=/; max-age=3600; secure; samesite=strict`;
+      document.cookie = `rf=${data.refreshToken}; path=/; max-age=604800; secure; samesite=strict`;
       const userData = await getMe(data.accessToken);
       localStorage.setItem("user", JSON.stringify(userData));
       showToast("success", "Đăng nhập thành công!");
@@ -88,24 +89,4 @@ if (loginTogglePassword) {
                 width="20"
               />
 `;
-}
-
-async function getMe(token) {
-  if (!token) return null;
-  try {
-    const response = await fetch(`${API_URL}/users/me`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    if (!response.ok) {
-      throw new Error("Failed to fetch user info");
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    return null;
-  }
 }

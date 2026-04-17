@@ -2,7 +2,7 @@ async function LoadLayout() {
   const headerResponse = await fetch("./components/header.html");
   const headerData = await headerResponse.text();
   document.getElementById("header").innerHTML = headerData;
-  stateRightHeader();
+  await stateRightHeader();
   hightLightCurrentPage();
 }
 function hightLightCurrentPage() {
@@ -17,16 +17,17 @@ function hightLightCurrentPage() {
   });
 }
 
-function stateRightHeader() {
+async function stateRightHeader() {
   const rightHeader = document.querySelector(".right-header");
-  const token = localStorage.getItem("token");
-  if (token) {
+  const ac = getCookie("ac");
+  if (ac) {
+    const user = await getMe(ac);
     rightHeader.innerHTML = `
-      <span class="user-name">Xin chào, ${JSON.parse(localStorage.getItem("user")).name}</span>
+      <span class="user-name">Xin chào, ${user.name}</span>
       <a href="#" class="nav-item" id="logout">Đăng xuất</a>
     `;
     document.getElementById("logout").addEventListener("click", () => {
-      localStorage.removeItem("token");
+      document.cookie = "ac=; path=/; max-age=0; secure; samesite=strict";
       localStorage.removeItem("user");
       stateRightHeader();
     });
@@ -40,7 +41,7 @@ function stateRightHeader() {
 window.onload = LoadLayout;
 
 function openModal() {
-  if (!localStorage.getItem("token")) {
+  if (!getCookie("ac")) {
     showToast("error", "Bạn cần đăng nhập để đăng bài viết");
     return;
   }
@@ -214,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
 async function submitPost() {
   const title = document.getElementById("post-title").value;
   const content = document.getElementById("post-content").value;
-  const token = localStorage.getItem("token");
+  const token = getCookie("ac");
   const userId = JSON.parse(localStorage.getItem("user")).id;
   if (!token) {
     showToast("error", "Bạn cần đăng nhập để đăng bài viết");

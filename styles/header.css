@@ -64,6 +64,12 @@
   height: 2px;
   background-color: #067ad8;
 }
+.header .right-header {
+  margin-left: auto;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
 .logout-btn {
   padding: 10px 20px;
   font-size: 18px;

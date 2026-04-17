@@ -61,7 +61,7 @@ async function postComment() {
   btnLoading.start(sendBtn);
   try {
     const commentInput = document.getElementById("comment-input");
-    const token = localStorage.getItem("token");
+    const token = getCookie("ac");
     if (!token) {
       showToast("error", "Bạn cần đăng nhập để bình luận");
       return;
