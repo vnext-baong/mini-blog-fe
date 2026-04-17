@@ -56,3 +56,63 @@ const formatTimeAgo = (timestamp) => {
 
   return "vừa xong";
 };
+
+async function getMe(token) {
+  if (!token) return null;
+  try {
+    const response = await fetch(`${API_URL}/users/me`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.status === 401) {
+      refreshToken();
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    return null;
+  }
+}
+
+async function refreshToken() {
+  const refreshToken = getCookie("rf");
+  if (!refreshToken) {
+    showToast("error", "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.");
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 1000);
+  }
+  try {
+    const response = await fetch(`${API_URL}/tokens/access-token`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ refreshToken }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      document.cookie = `ac=${data.accessToken}; path=/; max-age=3600; secure; samesite=strict`;
+      return data.accessToken;
+    } else {
+      showToast("error", "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.");
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 1000);
+    }
+  } catch (error) {
+    showToast("error", "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.");
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 1000);
+  }
+}
+
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
+}
