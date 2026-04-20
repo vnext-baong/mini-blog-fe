@@ -1,0 +1,59 @@
+{
+  "auth": {
+    "username": "Tên đăng nhập",
+    "usernamePlaceholder": "Nhập tên đăng nhập...",
+    "password": "Mật khẩu",
+    "passwordPlaceholder": "Nhập mật khẩu...",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "confirmPasswordPlaceholder": "Xác nhận mật khẩu...",
+    "name": "Họ và tên",
+    "namePlaceholder": "Nhập họ và tên...",
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "logout": "Đăng xuất"
+  },
+  "validation": {
+    "usernameRequired": "Vui lòng nhập tên đăng nhập",
+    "passwordRequired": "Vui lòng nhập mật khẩu",
+    "nameRequired": "Vui lòng nhập họ và tên",
+    "confirmPasswordRequired": "Vui lòng xác nhận mật khẩu",
+    "passwordMin": "Mật khẩu phải có ít nhất 6 ký tự",
+    "passwordStrength": "Mật khẩu phải có ít nhất 1 chữ in hoa, 1 chữ thường và 1 chữ số",
+    "passwordMismatch": "Mật khẩu xác nhận không khớp"
+  },
+  "messages": {
+    "greeting": "Xin chào",
+    "loginSuccess": "Đăng nhập thành công!",
+    "loginError": "Đăng nhập thất bại. Vui lòng thử lại.",
+    "registerSuccess": "Đăng ký thành công! Vui lòng đăng nhập.",
+    "registerError": "Đăng ký thất bại. Vui lòng thử lại.",
+    "loginRequired": "Bạn cần đăng nhập để đăng bài viết"
+  },
+  "createPost": {
+    "createPost": "Tạo bài viết mới",
+    "title": "Tiêu đề",
+    "content": "Nội dung",
+    "submit": "Đăng bài",
+    "createPlaceholder": "Tạo bài viết mới...",
+    "titlePlaceholder": "Nhập tiêu đề bài viết",
+    "contentPlaceholder": "Nhập nội dung bài viết",
+    "cancel": "Hủy",
+    "submit":"Đăng bài"
+
+  },
+  "postDetail":{
+    "comment": "Bình luận",
+    "commentPlaceholder": "Viết bình luận...",
+    "submit": "Gửi"
+  },
+  "time":{
+    "justNow": "Vừa xong",
+    "secondsAgo": "giây trước",
+    "minutesAgo": "phút trước",
+    "hoursAgo": "giờ trước",
+    "daysAgo": "ngày trước",
+    "weeksAgo": "tuần trước",
+    "monthsAgo": "tháng trước",
+    "yearsAgo": "năm trước"
+  }
+}

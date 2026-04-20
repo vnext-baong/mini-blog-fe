@@ -39,22 +39,22 @@ const formatTimeAgo = (timestamp) => {
   const diffInSeconds = Math.floor((now - postDate) / 1000);
 
   const intervals = [
-    { label: "năm", seconds: 31536000 },
-    { label: "tháng", seconds: 2592000 },
-    { label: "ngày", seconds: 86400 },
-    { label: "giờ", seconds: 3600 },
-    { label: "phút", seconds: 60 },
-    { label: "giây", seconds: 1 },
+    { label: i18next.t("time.yearsAgo"), seconds: 31536000 },
+    { label: i18next.t("time.monthsAgo"), seconds: 2592000 },
+    { label: i18next.t("time.daysAgo"), seconds: 86400 },
+    { label: i18next.t("time.hoursAgo"), seconds: 3600 },
+    { label: i18next.t("time.minutesAgo"), seconds: 60 },
+    { label: i18next.t("time.secondsAgo"), seconds: 1 },
   ];
 
   for (const interval of intervals) {
     const count = Math.floor(diffInSeconds / interval.seconds);
     if (count >= 1) {
-      return `${count} ${interval.label} trước`;
+      return `${count} ${interval.label}`;
     }
   }
 
-  return "vừa xong";
+  return i18next.t("time.justNow");
 };
 
 async function getMe(token) {

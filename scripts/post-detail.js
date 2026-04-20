@@ -9,7 +9,7 @@ async function getPostDetail() {
       postDetail.innerHTML = `
       <div class='post-header'>
         <h1 class="title">${post.title}</h1>
-        <p class="created-at">${new Date(post.createdAt).toLocaleString()}</p>
+        <p class="created-at">${formatTimeAgo(post.createdAt)}</p>
       </div>
       <p class="content">${post.content}</p>
       <p class="author">${post.author.name}</p>
@@ -37,7 +37,7 @@ async function getComments() {
         <div class='comment-header'>
         <img src='../assets/img/avt.jpg' alt='Avatar' class='avatar' height='30' width='30'/>
         <p class="comment-author">${comment.author.name}</p>
-        <p class="comment-created-at">${new Date(comment.createdAt).toLocaleString()}</p>
+        <p class="comment-created-at">${formatTimeAgo(comment.createdAt)}</p>
         </div>
         <p class="comment-content">${comment.content}</p>
       `;

@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Playwrite+IE:wght@100..400&display=swap"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
   </head>
   <body>
     <div id="header"></div>
@@ -17,7 +18,7 @@
       <div class="container">
         <div id="post-detail" class="post-detail"></div>
         <div class="comments">
-          <h2>Bình luận</h2>
+          <h2 data-i18n="postDetail.comment">Bình luận</h2>
           <div class="comment-container">
             <img
               src="./assets/img/avt.jpg"
@@ -29,10 +30,10 @@
             <input
               type="text"
               id="comment-input"
-              placeholder="Viết bình luận..."
+              data-i18n-placeholder="postDetail.commentPlaceholder"
             />
             <button id="submit-comment" class="btn" onclick="postComment()">
-              <span>Gửi</span>
+              <span data-i18n="postDetail.submit">Gửi</span>
               <div class="loader"></div>
             </button>
           </div>
@@ -44,5 +45,6 @@
     <script src="./scripts/config.js"></script>
     <script src="./scripts/script.js"></script>
     <script src="./scripts/post-detail.js"></script>
+    <script src="./scripts/translator.js"></script>
   </body>
 </html>
