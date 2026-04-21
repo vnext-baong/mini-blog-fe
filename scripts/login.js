@@ -11,13 +11,15 @@ async function login() {
   document.getElementById("password-error").textContent = "";
   let hasError = false;
   if (!username) {
-    document.getElementById("username-error").textContent =
-      "Vui lòng nhập tên đăng nhập";
+    document.getElementById("username-error").textContent = i18next.t(
+      "validation.usernameRequired",
+    );
     hasError = true;
   }
   if (!password) {
-    document.getElementById("password-error").textContent =
-      "Vui lòng nhập mật khẩu";
+    document.getElementById("password-error").textContent = i18next.t(
+      "validation.passwordRequired",
+    );
     hasError = true;
   }
   if (hasError) {
@@ -38,18 +40,15 @@ async function login() {
       document.cookie = `rf=${data.refreshToken}; path=/; max-age=604800; secure; samesite=strict`;
       const userData = await getMe(data.accessToken);
       localStorage.setItem("user", JSON.stringify(userData));
-      showToast("success", "Đăng nhập thành công!");
+      showToast("success", i18next.t("messages.loginSuccess"));
       setTimeout(() => {
         window.location.href = "index.html";
       }, 1000);
     } else {
-      showToast(
-        "error",
-        data.message || "Đăng nhập thất bại. Vui lòng thử lại.",
-      );
+      showToast("error", data.message || i18next.t("messages.loginError"));
     }
   } catch (error) {
-    showToast("error", "Đăng nhập thất bại. Vui lòng thử lại.");
+    showToast("error", i18next.t("messages.loginError"));
   } finally {
     btnLoading.stop(document.querySelector(".submit-btn"));
   }

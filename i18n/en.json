@@ -1,0 +1,58 @@
+{
+  "auth": {
+    "username": "Username",
+    "usernamePlaceholder": "Enter username...",
+    "password": "Password",
+    "passwordPlaceholder": "Enter password...",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm password...",
+    "name": "Full Name",
+    "namePlaceholder": "Enter full name...",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout"
+  },
+  "validation": {
+    "usernameRequired": "Please enter username",
+    "passwordRequired": "Please enter password",
+    "nameRequired": "Please enter full name",
+    "confirmPasswordRequired": "Please confirm password",
+    "passwordMin": "Password must be at least 6 characters",
+    "passwordStrength": "Password must contain at least 1 uppercase letter, 1 lowercase letter and 1 number",
+    "passwordMismatch": "Password confirmation does not match"
+  },
+  "messages": {
+    "greeting": "Hello",
+    "loginSuccess": "Login successful!",
+    "loginError": "Login failed. Please try again.",
+    "registerSuccess": "Registration successful! Please login.",
+    "registerError": "Registration failed. Please try again.",
+    "loginRequired": "You need to login to post an article"
+  },
+  "createPost": {
+    "createPost": "Create New Post",
+    "title": "Title",
+    "content": "Content",
+    "submit": "Post",
+    "createPlaceholder": "Create new post...",
+    "titlePlaceholder": "Enter post title",
+    "contentPlaceholder": "Enter post content",
+    "cancel": "Cancel",
+    "submit":"Post"
+  },
+  "postDetail":{
+    "comment": "Comment",
+    "commentPlaceholder": "Write a comment...",
+    "submit": "Submit"
+  },
+  "time":{
+    "justNow": "Just now",
+    "secondsAgo": "seconds ago",
+    "minutesAgo": "minutes ago",
+    "hoursAgo": "hours ago",
+    "daysAgo": "days ago",
+    "weeksAgo": "weeks ago",
+    "monthsAgo": "months ago",
+    "yearsAgo": "years ago"
+  }
+}

@@ -4,7 +4,24 @@ async function LoadLayout() {
   document.getElementById("header").innerHTML = headerData;
   await stateRightHeader();
   hightLightCurrentPage();
+  updateLangFlag();
+  if (typeof updateContent === "function") {
+    updateContent();
+  }
 }
+
+function updateLangFlag() {
+  const lang = localStorage.getItem("lang") || "vi";
+  const imgLang = {
+    en: "https://flagcdn.com/w20/us.png",
+    vi: "https://flagcdn.com/w20/vn.png",
+  };
+  const btnImg = document.querySelector("#change-lang img");
+  if (imgLang[lang] && btnImg) {
+    btnImg.src = imgLang[lang];
+  }
+}
+
 function hightLightCurrentPage() {
   const currentPath = window.location.pathname.split("/").pop() || "index.html";
   const navLinks = document.querySelectorAll(".nav-item");
@@ -23,8 +40,8 @@ async function stateRightHeader() {
   if (ac) {
     const user = await getMe(ac);
     rightHeader.innerHTML = `
-      <span class="user-name">Xin chào, ${user.name}</span>
-      <a href="#" class="nav-item" id="logout">Đăng xuất</a>
+      <span class="user-name">${user.name}</span>
+      <a href="#" class="nav-item" id="logout" data-i18n="auth.logout">Đăng xuất</a>
     `;
     document.getElementById("logout").addEventListener("click", () => {
       document.cookie = "ac=; path=/; max-age=0; secure; samesite=strict";
@@ -33,8 +50,8 @@ async function stateRightHeader() {
     });
   } else {
     rightHeader.innerHTML = `
-       <a href="login.html" class="btn">Đăng nhập</a>
-       <a href="register.html" class="btn reg-btn">Đăng ký</a>
+       <a href="login.html" class="btn" data-i18n="auth.login">Đăng nhập</a>
+       <a href="register.html" class="btn reg-btn" data-i18n="auth.register">Đăng ký</a>
     `;
   }
 }
@@ -257,3 +274,24 @@ function displayMenu() {
   const menu = document.querySelector(".menu");
   menu.style.display = menu.style.display === "flex" ? "none" : "flex";
 }
+
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("#dropdown-content a");
+  if (link) {
+    e.preventDefault();
+    const lang = link.getAttribute("data-lang");
+    const imgLang = {
+      en: "https://flagcdn.com/w20/us.png",
+      vi: "https://flagcdn.com/w20/vn.png",
+    };
+
+    const btnImg = document.querySelector("#change-lang img");
+    if (imgLang[lang] && btnImg) {
+      btnImg.src = imgLang[lang];
+    }
+
+    if (typeof changeLanguage === "function") {
+      changeLanguage(lang);
+    }
+  }
+});

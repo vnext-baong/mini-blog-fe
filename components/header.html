@@ -9,15 +9,28 @@
     </ul> -->
   </nav>
   <div class="right-header"></div>
-  <div class="menu">
-    <a href="login.html" class="menu-item">Đăng nhập</a>
-    <a href="register.html" class="menu-item">Đăng ký</a>
+  <div class="lang-menu">
+    <div class="dropdown">
+      <button class="change-lang" id="change-lang">
+        <img src="https://flagcdn.com/w20/vn.png" alt="Language" />
+      </button>
+      <div class="dropdown-content" id="dropdown-content">
+        <a href="#" data-lang="en">
+          <img src="https://flagcdn.com/w20/us.png" alt="English" />
+          <span>English</span>
+        </a>
+        <a href="#" data-lang="vi">
+          <img src="https://flagcdn.com/w20/vn.png" alt="Tiếng Việt" />
+          <span>Tiếng Việt</span>
+        </a>
+      </div>
+    </div>
+    <button class="menu-toggle" id="menu-toggle" onclick="displayMenu()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <path
+          d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
+        />
+      </svg>
+    </button>
   </div>
-  <button class="menu-toggle" id="menu-toggle" onclick="displayMenu()">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-      <path
-        d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
-      />
-    </svg>
-  </button>
 </div>

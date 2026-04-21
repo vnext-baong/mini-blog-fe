@@ -19,42 +19,49 @@ async function register() {
   let hasError = false;
 
   if (!username) {
-    document.getElementById("username-error").textContent =
-      "Vui lòng nhập tên đăng nhập";
+    document.getElementById("username-error").textContent = i18next.t(
+      "validation.usernameRequired",
+    );
     hasError = true;
   }
 
   if (!name) {
-    document.getElementById("name-error").textContent =
-      "Vui lòng nhập họ và tên";
+    document.getElementById("name-error").textContent = i18next.t(
+      "validation.nameRequired",
+    );
     hasError = true;
   }
 
   if (!password) {
-    document.getElementById("password-error").textContent =
-      "Vui lòng nhập mật khẩu";
+    document.getElementById("password-error").textContent = i18next.t(
+      "validation.passwordRequired",
+    );
     hasError = true;
   }
   if (password && password.length < 6) {
-    document.getElementById("password-error").textContent =
-      "Mật khẩu phải có ít nhất 6 ký tự";
+    document.getElementById("password-error").textContent = i18next.t(
+      "validation.passwordLength",
+    );
     hasError = true;
   }
   if (password && !/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(password)) {
-    document.getElementById("password-error").textContent =
-      "Mật khẩu phải có ít nhất 1 chữ in hoa, 1 chữ thường và 1 chữ số";
+    document.getElementById("password-error").textContent = i18next.t(
+      "validation.passwordComplexity",
+    );
     hasError = true;
   }
 
   if (!confirmPassword) {
-    document.getElementById("confirm-password-error").textContent =
-      "Vui lòng xác nhận mật khẩu";
+    document.getElementById("confirm-password-error").textContent = i18next.t(
+      "validation.confirmPasswordRequired",
+    );
     hasError = true;
   }
 
   if (password && confirmPassword && password !== confirmPassword) {
-    document.getElementById("confirm-password-error").textContent =
-      "Mật khẩu xác nhận không khớp";
+    document.getElementById("confirm-password-error").textContent = i18next.t(
+      "validation.passwordMismatch",
+    );
     hasError = true;
   }
 
@@ -72,15 +79,15 @@ async function register() {
     });
     const data = await response.json();
     if (response.ok) {
-      showToast("success", "Đăng ký thành công! Vui lòng đăng nhập.");
+      showToast("success", i18next.t("toast.registerSuccess"));
       setTimeout(() => {
         window.location.href = "login.html";
       }, 1000);
     } else {
-      showToast("error", data.message || "Đăng ký thất bại. Vui lòng thử lại.");
+      showToast("error", data.message || i18next.t("toast.registerFailure"));
     }
   } catch (error) {
-    showToast("error", "Đăng ký thất bại. Vui lòng thử lại.");
+    showToast("error", i18next.t("toast.registerFailure"));
   } finally {
     btnLoading.stop(document.querySelector(".submit-btn"));
   }

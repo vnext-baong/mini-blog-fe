@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Playwrite+IE:wght@100..400&display=swap"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
   </head>
   <body>
     <div id="header"></div>
@@ -26,7 +27,7 @@
           />
           <input
             type="text"
-            placeholder="Tạo bài viết..."
+            data-i18n-placeholder="createPost.createPlaceholder"
             readonly
             onclick="openModal()"
           />
@@ -45,28 +46,32 @@
         <div class="modal">
           <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Tạo bài viết mới</h2>
+            <h2 data-i18n="createPost.createPost"></h2>
             <div class="title">
-              <label for="post-title">Tiêu đề bài viết:</label>
+              <label for="post-title" data-i18n="createPost.title"></label>
               <input
                 type="text"
                 id="post-title"
-                placeholder="Nhập tiêu đề bài viết..."
+                data-i18n-placeholder="createPost.titlePlaceholder"
               />
             </div>
             <div class="content">
-              <label for="post-content">Nội dung bài viết:</label>
+              <label for="post-content" data-i18n="createPost.content"></label>
               <textarea
                 id="post-content"
-                placeholder="Viết nội dung bài viết..."
+                data-i18n-placeholder="createPost.contentPlaceholder"
               ></textarea>
             </div>
             <div class="modal-footer">
               <button class="submit-btn" onclick="submitPost()">
-                <span>Đăng</span>
+                <span data-i18n="createPost.submit"></span>
                 <div class="loader"></div>
               </button>
-              <button class="cancel-btn" onclick="closeModal()">Hủy</button>
+              <button
+                class="cancel-btn"
+                onclick="closeModal()"
+                data-i18n="createPost.cancel"
+              ></button>
             </div>
           </div>
         </div>
@@ -75,6 +80,7 @@
     <!-- <div id="footer"></div> -->
     <script src="./scripts/loading.js"></script>
     <script src="./scripts/config.js"></script>
+    <script src="./scripts/translator.js"></script>
     <script src="./scripts/script.js"></script>
   </body>
 </html>
