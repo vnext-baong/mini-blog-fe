@@ -35,7 +35,7 @@ async function getComments() {
         commentElement.classList.add("comment");
         commentElement.innerHTML = `
         <div class='comment-header'>
-        <img src='../assets/img/avt.jpg' alt='Avatar' class='avatar' height='30' width='30'/>
+        <img src='./assets/img/avt.jpg' alt='Avatar' class='avatar' height='30' width='30'/>
         <p class="comment-author">${comment.author.name}</p>
         <p class="comment-created-at" data-timestamp="${comment.createdAt}">${formatTimeAgo(comment.createdAt)}</p>
         </div>
