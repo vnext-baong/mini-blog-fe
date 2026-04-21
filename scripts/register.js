@@ -46,7 +46,7 @@ async function register() {
   }
   if (password && !/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(password)) {
     document.getElementById("password-error").textContent = i18next.t(
-      "validation.passwordComplexity",
+      "validation.passwordStrength",
     );
     hasError = true;
   }

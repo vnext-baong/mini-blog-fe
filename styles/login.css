@@ -17,6 +17,7 @@
 .form-group {
   margin-bottom: 15px;
   font-size: 16px;
+  position: relative;
 }
 .form-group label {
   display: block;
@@ -50,7 +51,7 @@
 .toggle-password {
   position: absolute;
   right: 16px;
-  top: 72%;
+  top: 48px;
   transform: translateY(-50%);
   background: none;
   border: none;
