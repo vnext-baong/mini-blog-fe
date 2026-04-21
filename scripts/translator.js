@@ -34,6 +34,14 @@ function updateContent() {
     const key = element.getAttribute("data-i18n-placeholder");
     element.setAttribute("placeholder", i18next.t(key));
   });
+
+  const timeElements = document.querySelectorAll("[data-timestamp]");
+  timeElements.forEach((element) => {
+    const timestamp = element.getAttribute("data-timestamp");
+    if (timestamp && typeof formatTimeAgo === "function") {
+      element.textContent = formatTimeAgo(timestamp);
+    }
+  });
 }
 
 function changeLanguage(lang) {

@@ -11,15 +11,15 @@ const btnLoading = {
 
 const validateInput = (inputElement) => {
   inputElement.addEventListener("beforeinput", (e) => {
-    if (e.data && !/^[0-9a-zA-Z]*$/.test(e.data)) {
+    if (e.data && !/^[\p{L}0-9\s\-.,!?()]*$/u.test(e.data)) {
       e.preventDefault();
     }
   });
 
   inputElement.addEventListener("input", (e) => {
     const value = e.target.value;
-    if (!/^[0-9a-zA-Z]*$/.test(value)) {
-      e.target.value = value.replace(/[^0-9a-zA-Z]/g, "");
+    if (!/^[\p{L}0-9\s\-.,!?()]*$/u.test(value)) {
+      e.target.value = value.replace(/[^\p{L}0-9\s\-.,!?()]/gu, "");
     }
   });
 
@@ -27,7 +27,7 @@ const validateInput = (inputElement) => {
     const pastedText = (e.clipboardData || window.clipboardData).getData(
       "text",
     );
-    if (!/^[0-9a-zA-Z]*$/.test(pastedText)) {
+    if (!/^[\p{L}0-9\s\-.,!?()]*$/u.test(pastedText)) {
       e.preventDefault();
     }
   });
