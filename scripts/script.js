@@ -89,14 +89,19 @@ function getPosts(limit = 5, page = 1) {
         postElement.classList.add("post");
         postElement.innerHTML = `
         <div class='post-header'>
-        <div class='author-info'>
-        <img src='./assets/img/avt.jpg' alt='Avatar' class='avatar' height='50' width='50'/  >
-        <h3 class='author'>${post.author.name}</h3>
+          <div class='author-info'>
+            <img src='./assets/img/avt.jpg' alt='Avatar' class='avatar' height='50' width='50'/>
+            <h3 class='author'>${post.author.name}</h3>
           </div>
-        <p class='created-at' data-timestamp='${post.createdAt}'>${formatTimeAgo(post.createdAt)}</p>
+          <p class='created-at' data-timestamp='${post.createdAt}'>${formatTimeAgo(post.createdAt)}</p>
         </div>
-          <h2 class='title'>${post.title}</h2>
-          <p class='content'>${post.content.substring(0, 100)}...</p>
+        <div class='post-body'>
+          <img src='${post.thumbnail ? API_URL + post.thumbnail : "./assets/img/image.png"}' alt='Thumbnail' class='thumbnail'/>
+          <div class='post-info'>
+            <h2 class='title'>${post.title}</h2>
+            <p class='content'>${post.content.substring(0, 100)}...</p>
+          </div>
+        </div>
         `;
         postsContainer.appendChild(postElement);
         postElement.addEventListener("click", () => {
