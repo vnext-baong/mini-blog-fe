@@ -70,9 +70,30 @@ function closeModal() {
   modal.style.display = "none";
   const titleInput = document.getElementById("post-title");
   const contentInput = document.getElementById("post-content");
+  const thumbnailInput = document.getElementById("post-thumbnail");
+  const thumbnailPreview = document.getElementById("thumbnail-preview");
   titleInput.value = "";
   contentInput.value = "";
+  thumbnailInput.value = "";
+  thumbnailPreview.innerHTML = "";
 }
+
+function previewImage() {
+  const fileInput = document.getElementById("post-thumbnail");
+  const preview = document.getElementById("thumbnail-preview");
+  const file = fileInput.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      preview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="preview-img" />`;
+    };
+    reader.readAsDataURL(file);
+  } else {
+    preview.innerHTML = "";
+  }
+}
+
 let currentPage = 1;
 let totalPage = 1;
 
@@ -235,37 +256,50 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function submitPost() {
-  const title = document.getElementById("post-title").value;
-  const content = document.getElementById("post-content").value;
+  const title = document.getElementById("post-title").value.trim();
+  const content = document.getElementById("post-content").value.trim();
+  const thumbnailInput = document.getElementById("post-thumbnail");
   const token = getCookie("ac");
   const userId = JSON.parse(localStorage.getItem("user")).id;
+
   if (!token) {
     showToast("error", "Bạn cần đăng nhập để đăng bài viết");
     return;
   }
-  const body = {
-    title: title,
-    content: content,
-    authorId: userId,
-  };
+
+  if (!title || !content) {
+    showToast("error", "Vui lòng nhập tiêu đề và nội dung");
+    return;
+  }
+
   const cancelBtn = document.querySelector(".cancel-btn");
   const submitBtn = document.querySelector(".submit-btn");
   cancelBtn.disabled = true;
   btnLoading.start(submitBtn);
 
   try {
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("authorId", userId);
+
+    if (thumbnailInput.files.length > 0) {
+      formData.append("thumbnail", thumbnailInput.files[0]);
+    }
+
     const res = await fetch(`${API_URL}/posts`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(body),
+      body: formData,
     });
     if (res.ok) {
       showToast("success", "Đăng bài viết thành công!");
       closeModal();
       getPosts(document.querySelector(".pagination select").value, currentPage);
+    } else {
+      showToast("error", "Đăng bài viết thất bại");
     }
   } catch (error) {
     showToast("error", error);

@@ -33,6 +33,7 @@
     "createPost": "Tạo bài viết mới",
     "title": "Tiêu đề",
     "content": "Nội dung",
+    "thumbnail": "Hình ảnh",
     "submit": "Đăng bài",
     "createPlaceholder": "Tạo bài viết mới...",
     "titlePlaceholder": "Nhập tiêu đề bài viết",
