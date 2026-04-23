@@ -31,6 +31,13 @@
   line-height: 1.6;
   margin-bottom: 20px;
 }
+.post-detail .thumbnail {
+  border-radius: 8px;
+  display: block;
+  margin: 20px auto;
+  max-width: 100%;
+  height: auto;
+}
 .comments {
   margin-top: 30px;
   background-color: rgb(211, 228, 238);

@@ -11,6 +11,7 @@ async function getPostDetail() {
         <h1 class="title">${post.title}</h1>
         <p class="created-at" data-timestamp="${post.createdAt}">${formatTimeAgo(post.createdAt)}</p>
       </div>
+      <img src='${post.thumbnail ? API_URL + post.thumbnail : "./assets/img/image.png"}' alt='Thumbnail' class='thumbnail'/>
       <p class="content">${post.content}</p>
       <p class="author">${post.author.name}</p>
     `;
