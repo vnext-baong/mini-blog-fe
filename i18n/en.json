@@ -33,6 +33,7 @@
     "createPost": "Create New Post",
     "title": "Title",
     "content": "Content",
+    "thumbnail": "Thumbnail",
     "submit": "Post",
     "createPlaceholder": "Create new post...",
     "titlePlaceholder": "Enter post title",

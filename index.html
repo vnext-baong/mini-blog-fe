@@ -62,6 +62,19 @@
                 data-i18n-placeholder="createPost.contentPlaceholder"
               ></textarea>
             </div>
+            <div class="thumbnail">
+              <label
+                for="post-thumbnail"
+                data-i18n="createPost.thumbnail"
+              ></label>
+              <input
+                type="file"
+                id="post-thumbnail"
+                accept="image/*"
+                onchange="previewImage()"
+              />
+              <div id="thumbnail-preview" class="thumbnail-preview"></div>
+            </div>
             <div class="modal-footer">
               <button class="submit-btn" onclick="submitPost()">
                 <span data-i18n="createPost.submit"></span>
