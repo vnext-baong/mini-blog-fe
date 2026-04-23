@@ -61,7 +61,6 @@ async function postComment() {
   sendBtn.disabled = true;
   btnLoading.start(sendBtn);
   try {
-    const commentInput = document.getElementById("comment-input");
     const token = getCookie("ac");
     if (!token) {
       showToast("error", "Bạn cần đăng nhập để bình luận");
@@ -73,18 +72,26 @@ async function postComment() {
       return;
     }
 
-    const res = await fetch(`${API_URL}/comments`, {
+    const userId = JSON.parse(localStorage.getItem("user"))?.id;
+    if (!userId) {
+      showToast("error");
+      return;
+    }
+
+    const res = await fetchWithAuth(`${API_URL}/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         content: content,
         postId: postId,
-        authorId: JSON.parse(localStorage.getItem("user")).id,
+        authorId: userId,
       }),
     });
+
+    if (!res) return;
+
     if (res.ok) {
       commentInput.value = "";
       getComments();

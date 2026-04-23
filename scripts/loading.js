@@ -84,6 +84,7 @@ async function refreshToken() {
     setTimeout(() => {
       window.location.href = "login.html";
     }, 1000);
+    return null;
   }
   try {
     const response = await fetch(`${API_URL}/tokens/access-token`, {
@@ -91,7 +92,7 @@ async function refreshToken() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ refreshToken }),
+      body: JSON.stringify({ refreshToken: rf }),
     });
     const data = await response.json();
     if (response.ok) {
@@ -102,13 +103,43 @@ async function refreshToken() {
       setTimeout(() => {
         window.location.href = "login.html";
       }, 1000);
+      return null;
     }
   } catch (error) {
     showToast("error", "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.");
     setTimeout(() => {
       window.location.href = "login.html";
     }, 1000);
+    return null;
   }
+}
+
+async function fetchWithAuth(url, options = {}) {
+  let token = getCookie("ac");
+  if (!token) {
+    showToast("error", i18next.t("auth.pleaseLogin"));
+    return null;
+  }
+
+  const headers = {
+    ...options.headers,
+    Authorization: `Bearer ${token}`,
+  };
+
+  let response = await fetch(url, { ...options, headers });
+
+  if (response.status === 401) {
+    token = await refreshToken();
+    if (!token) return null;
+
+    const newHeaders = {
+      ...options.headers,
+      Authorization: `Bearer ${token}`,
+    };
+    response = await fetch(url, { ...options, headers: newHeaders });
+  }
+
+  return response;
 }
 
 function getCookie(name) {

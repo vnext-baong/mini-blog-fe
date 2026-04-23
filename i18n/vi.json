@@ -10,7 +10,8 @@
     "namePlaceholder": "Nhập họ và tên...",
     "login": "Đăng nhập",
     "register": "Đăng ký",
-    "logout": "Đăng xuất"
+    "logout": "Đăng xuất",
+    "pleaseLogin": "Vui lòng đăng nhập để tiếp tục"
   },
   "validation": {
     "usernameRequired": "Vui lòng nhập tên đăng nhập",

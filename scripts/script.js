@@ -259,10 +259,9 @@ async function submitPost() {
   const title = document.getElementById("post-title").value.trim();
   const content = document.getElementById("post-content").value.trim();
   const thumbnailInput = document.getElementById("post-thumbnail");
-  const token = getCookie("ac");
-  const userId = JSON.parse(localStorage.getItem("user")).id;
+  const userId = JSON.parse(localStorage.getItem("user"))?.id;
 
-  if (!token) {
+  if (!userId) {
     showToast("error", "Bạn cần đăng nhập để đăng bài viết");
     return;
   }
@@ -287,13 +286,13 @@ async function submitPost() {
       formData.append("thumbnail", thumbnailInput.files[0]);
     }
 
-    const res = await fetch(`${API_URL}/posts`, {
+    const res = await fetchWithAuth(`${API_URL}/posts`, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
       body: formData,
     });
+
+    if (!res) return;
+
     if (res.ok) {
       showToast("success", "Đăng bài viết thành công!");
       closeModal();
