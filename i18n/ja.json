@@ -1,0 +1,61 @@
+{
+  "auth": {
+    "username": "ユーザー名",
+    "usernamePlaceholder": "ユーザー名を入力...",
+    "password": "パスワード",
+    "passwordPlaceholder": "パスワードを入力...",
+    "confirmPassword": "パスワード確認",
+    "confirmPasswordPlaceholder": "パスワードを確認...",
+    "name": "名前",
+    "namePlaceholder": "名前を入力...",
+    "login": "ログイン",
+    "register": "登録",
+    "logout": "ログアウト",
+    "pleaseLogin": "続行するにはログインしてください"
+  },
+  "validation": {
+    "usernameRequired": "ユーザー名を入力してください",
+    "passwordRequired": "パスワードを入力してください",
+    "nameRequired": "名前を入力してください",
+    "confirmPasswordRequired": "パスワードを確認してください",
+    "passwordMin": "パスワードは少なくとも6文字必要です",
+    "passwordStrength": "パスワードは大文字、小文字、数字をそれぞれ1文字以上含めてください",
+    "passwordMismatch": "パスワードが一致しません"
+  },
+  "messages": {
+    "greeting": "こんにちは",
+    "loginSuccess": "ログインに成功しました！",
+    "loginError": "ログインに失敗しました。もう一度お試しください。",
+    "registerSuccess": "登録に成功しました！ログインしてください。",
+    "registerError": "登録に失敗しました。もう一度お試しください。",
+    "loginRequired": "記事を投稿するにはログインしてください"
+  },
+  "createPost": {
+    "createPost": "新しい記事を作成",
+    "title": "タイトル",
+    "content": "内容",
+    "thumbnail": "サムネイル",
+    "submit": "記事を投稿",
+    "createPlaceholder": "新しい記事を作成...",
+    "titlePlaceholder": "タイトルを入力...",
+    "contentPlaceholder": "内容を入力...",
+    "cancel": "キャンセル",
+    "submit":"記事を投稿"
+
+  },
+  "postDetail":{
+    "comment": "コメント",
+    "commentPlaceholder": "コメントを書く...",
+    "submit": "送信"
+  },
+  "time":{
+    "justNow": "ちょうど今",
+    "secondsAgo": "秒前",
+    "minutesAgo": "分前",
+    "hoursAgo": "時間前",
+    "daysAgo": "日前",
+    "weeksAgo": "週間前",
+    "monthsAgo": "ヶ月前",
+    "yearsAgo": "年前"
+  }
+}

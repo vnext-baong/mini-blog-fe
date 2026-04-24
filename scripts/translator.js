@@ -2,9 +2,10 @@ const defaultLang = localStorage.getItem("lang") || "vi";
 
 async function initI18n() {
   try {
-    const [enRes, viRes] = await Promise.all([
+    const [enRes, viRes, jaRes] = await Promise.all([
       fetch("./i18n/en.json").then((res) => res.json()),
       fetch("./i18n/vi.json").then((res) => res.json()),
+      fetch("./i18n/ja.json").then((res) => res.json()),
     ]);
 
     await i18next.init({
@@ -13,6 +14,7 @@ async function initI18n() {
       resources: {
         en: { translation: enRes },
         vi: { translation: viRes },
+        ja: { translation: jaRes },
       },
     });
 
