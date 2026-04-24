@@ -14,6 +14,7 @@ function updateLangFlag() {
   const lang = localStorage.getItem("lang") || "vi";
   const imgLang = {
     en: "https://flagcdn.com/w20/us.png",
+    ja: "https://flagcdn.com/w20/jp.png",
     vi: "https://flagcdn.com/w20/vn.png",
   };
   const btnImg = document.querySelector("#change-lang img");
@@ -321,6 +322,7 @@ document.addEventListener("click", (e) => {
     const imgLang = {
       en: "https://flagcdn.com/w20/us.png",
       vi: "https://flagcdn.com/w20/vn.png",
+      jp: "https://flagcdn.com/w20/jp.png",
     };
 
     const btnImg = document.querySelector("#change-lang img");
