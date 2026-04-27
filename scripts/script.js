@@ -41,7 +41,7 @@ async function stateRightHeader() {
   if (ac) {
     const user = await getMe(ac);
     rightHeader.innerHTML = `
-      <span class="user-name">${user.name}</span>
+      <a href="profile.html" class="user-name">${user.name}</a>
       <a href="#" class="nav-item" id="logout" data-i18n="auth.logout">Đăng xuất</a>
     `;
     document.getElementById("logout").addEventListener("click", () => {

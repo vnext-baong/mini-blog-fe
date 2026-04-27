@@ -69,6 +69,12 @@
   margin-left: auto;
   align-items: center;
 }
+.header .user-name {
+  font-size: 18px;
+  text-decoration: none;
+  color: black;
+  margin-right: 20px;
+}
 .logout-btn {
   padding: 10px 20px;
   font-size: 18px;
