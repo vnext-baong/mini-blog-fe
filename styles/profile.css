@@ -85,6 +85,10 @@
   transition: border-color 0.3s ease;
 }
 
+.form-group input[type="password"] {
+  padding-right: 48px;
+}
+
 .form-group input:focus {
   outline: none;
   border-color: #007bff;
@@ -114,7 +118,7 @@
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
 }
 
-.tab-content button {
+.tab-content button:not(.toggle-password) {
   padding: 12px 20px;
   border: none;
   background-color: #007bff;
@@ -127,11 +131,11 @@
   width: 100%;
 }
 
-.tab-content button:hover {
+.tab-content button:not(.toggle-password):hover {
   background-color: #0056b3;
 }
 
-.tab-content button:disabled {
+.tab-content button:not(.toggle-password):disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
@@ -151,9 +155,14 @@
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
 }
 
-.btn {
+.btn-save {
   font-size: 16px;
   padding: 12px 20px;
   background-color: #007bff;

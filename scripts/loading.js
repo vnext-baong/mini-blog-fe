@@ -92,7 +92,7 @@ async function refreshToken() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ refreshToken: rf }),
+      body: JSON.stringify({ refreshToken: refreshToken }),
     });
     const data = await response.json();
     if (response.ok) {
