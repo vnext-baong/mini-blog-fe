@@ -56,6 +56,11 @@
                 name="old-password"
                 required
               />
+              <button
+                type="button"
+                class="toggle-password old-password-toggle"
+                onclick="toggleOldPassword()"
+              ></button>
               <p class="error-message" id="old-password-error"></p>
             </div>
 
@@ -67,6 +72,11 @@
                 name="new-password"
                 required
               />
+              <button
+                type="button"
+                class="toggle-password new-password-toggle"
+                onclick="toggleNewPassword()"
+              ></button>
               <p class="error-message" id="new-password-error"></p>
             </div>
 
@@ -78,19 +88,26 @@
                 name="confirm-password"
                 required
               />
+              <button
+                type="button"
+                class="toggle-password confirm-password-toggle"
+                onclick="toggleConfirmPassword()"
+              ></button>
               <p class="error-message" id="confirm-password-error"></p>
             </div>
 
-            <button type="submit" class="btn">Lưu thay đổi</button>
+            <button type="button" class="btn-save" onclick="changePass()">
+              Đổi mật khẩu
+            </button>
           </form>
         </div>
       </div>
     </main>
     <div id="footer"></div>
+    <script src="./scripts/profile.js"></script>
     <script src="./scripts/config.js"></script>
     <script src="./scripts/loading.js"></script>
     <script src="./scripts/translator.js"></script>
     <script src="./scripts/script.js"></script>
-    <script src="./scripts/profile.js"></script>
   </body>
 </html>
