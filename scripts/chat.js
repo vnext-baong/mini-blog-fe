@@ -15,6 +15,20 @@ const socket = io(`${API_URL}/chats`, {
 
 const user = JSON.parse(localStorage.getItem("user"));
 let lastSenderId = null;
+let isTyping = false;
+let typingTimeout;
+chatInput.addEventListener("input", function (e) {
+  if (!isTyping) {
+    socket.emit("startTyping", { userId: user.id, name: user.name });
+    isTyping = true;
+  }
+
+  clearTimeout(typingTimeout);
+  typingTimeout = setTimeout(() => {
+    socket.emit("stopTyping", { userId: user.id, name: user.name });
+    isTyping = false;
+  }, 10000);
+});
 
 socket.on("connect", () => {
   console.log("Socket connected successfully");
@@ -37,6 +51,16 @@ socket.on("newMessage", (message) => {
   displayMessage(message, "received");
 });
 
+socket.on("startTyping", (data) => {
+  const typingIndicator = document.getElementById("typing-indicator");
+  typingIndicator.textContent = `${data.name + " " + i18next.t("chat.isTyping")}`;
+});
+
+socket.on("stopTyping", (data) => {
+  const typingIndicator = document.getElementById("typing-indicator");
+  typingIndicator.textContent = "";
+});
+
 function sendMessage() {
   const messageText = chatInput.value.trim();
   if (!messageText) return;
@@ -52,7 +76,8 @@ function sendMessage() {
   };
 
   socket.emit("sendMessage", messageData);
-
+  socket.emit("stopTyping", { userId: user.id, name: user.name });
+  isTyping = false;
   displayMessage(messageData, "sent");
   chatInput.value = "";
 }

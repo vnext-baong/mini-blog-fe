@@ -61,6 +61,7 @@
   "chat": {
     "title": "チャットルーム",
     "placeholder": "メッセージを入力...",
-    "send": "送信"
+    "send": "送信",
+    "isTyping": "が入力中..."
   }
 }

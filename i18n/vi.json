@@ -61,6 +61,7 @@
   "chat": {
     "title": "Phòng chat",
     "placeholder": "Nhập tin nhắn...",
-    "send": "Gửi"
+    "send": "Gửi",
+    "isTyping": "đang nhập..."
   }
 }

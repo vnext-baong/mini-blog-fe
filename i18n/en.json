@@ -59,6 +59,7 @@
   "chat": {
     "title": "Chat Room",
     "placeholder": "Enter message...",
-    "send": "Send"
+    "send": "Send",
+    "isTyping": "is typing..."
   }
 }
