@@ -55,5 +55,10 @@
     "weeksAgo": "weeks ago",
     "monthsAgo": "months ago",
     "yearsAgo": "years ago"
+  },
+  "chat": {
+    "title": "Chat Room",
+    "placeholder": "Enter message...",
+    "send": "Send"
   }
 }

@@ -12,11 +12,26 @@
       rel="stylesheet"
     />
     <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+    <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
   </head>
   <body>
     <div id="header"></div>
     <main>
       <div class="container">
+        <div class="chat-box">
+          <h3 data-i18n="chat.title"></h3>
+          <div id="chat-messages" class="chat-messages"></div>
+          <div class="chat-input">
+            <input
+              type="text"
+              id="chat-input"
+              data-i18n-placeholder="chat.placeholder"
+            />
+            <button id="send-btn" class="btn" onclick="sendMessage()">
+              <span data-i18n="chat.send"></span>
+            </button>
+          </div>
+        </div>
         <div class="create-post">
           <img
             src="./assets/img/avt.jpg"
@@ -95,5 +110,6 @@
     <script src="./scripts/config.js"></script>
     <script src="./scripts/translator.js"></script>
     <script src="./scripts/script.js"></script>
+    <script src="./scripts/chat.js"></script>
   </body>
 </html>

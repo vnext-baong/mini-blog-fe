@@ -57,5 +57,10 @@
     "weeksAgo": "tuần trước",
     "monthsAgo": "tháng trước",
     "yearsAgo": "năm trước"
+  },
+  "chat": {
+    "title": "Phòng chat",
+    "placeholder": "Nhập tin nhắn...",
+    "send": "Gửi"
   }
 }

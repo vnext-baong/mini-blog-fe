@@ -57,5 +57,10 @@
     "weeksAgo": "週間前",
     "monthsAgo": "ヶ月前",
     "yearsAgo": "年前"
+  },
+  "chat": {
+    "title": "チャットルーム",
+    "placeholder": "メッセージを入力...",
+    "send": "送信"
   }
 }

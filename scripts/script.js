@@ -254,6 +254,7 @@ function showToast(type, message) {
 document.addEventListener("DOMContentLoaded", () => {
   validateInput(document.getElementById("post-title"));
   validateInput(document.getElementById("post-content"));
+  validateInput(document.getElementById("chat-input"));
 });
 
 async function submitPost() {
