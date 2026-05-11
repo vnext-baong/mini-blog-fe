@@ -3,6 +3,12 @@ document.addEventListener("DOMContentLoaded", () => {
   validateInput(document.getElementById("password"));
 });
 
+document.getElementById("password").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    login();
+  }
+});
+
 async function login() {
   const username = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value;

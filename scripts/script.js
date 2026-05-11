@@ -1,7 +1,37 @@
 async function LoadLayout() {
   const headerResponse = await fetch("./components/header.html");
   const headerData = await headerResponse.text();
-  document.getElementById("header").innerHTML = headerData;
+  const headerContainer = document.getElementById("header");
+  if (headerContainer) {
+    headerContainer.innerHTML = headerData;
+  }
+
+  const isLoggedIn = !!getCookie("ac");
+
+  if (isLoggedIn) {
+    const chatResponse = await fetch("./components/chats.html");
+    const chatModalResponse = await fetch("./components/chat-modal.html");
+    const chatData = await chatResponse.text();
+
+    const chatsContainer = document.getElementById("chats");
+    if (chatsContainer) {
+      chatsContainer.innerHTML = chatData;
+    }
+
+    const chatModalData = await chatModalResponse.text();
+    const modalContainer = document.createElement("div");
+    modalContainer.innerHTML = chatModalData;
+    document.body.appendChild(modalContainer);
+
+    if (typeof window.setupChatPopupDelegation === "function") {
+      window.setupChatPopupDelegation();
+    }
+  } else {
+    const chatsContainer = document.getElementById("chats");
+    if (chatsContainer) chatsContainer.style.display = "none";
+    document.body.classList.add("no-sidebar");
+  }
+
   await stateRightHeader();
   hightLightCurrentPage();
   updateLangFlag();
@@ -252,9 +282,14 @@ function showToast(type, message) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  validateInput(document.getElementById("post-title"));
-  validateInput(document.getElementById("post-content"));
-  validateInput(document.getElementById("chat-input"));
+  const postTitle = document.getElementById("post-title");
+  if (postTitle) validateInput(postTitle);
+
+  const postContent = document.getElementById("post-content");
+  if (postContent) validateInput(postContent);
+
+  const chatInput = document.getElementById("chat-input");
+  if (chatInput) validateInput(chatInput);
 });
 
 async function submitPost() {
@@ -336,3 +371,167 @@ document.addEventListener("click", (e) => {
     }
   }
 });
+
+function openGroupModal() {
+  const modal = document.getElementById("group-modal");
+  if (modal) {
+    modal.style.display = "flex";
+    document.getElementById("group-name").value = "";
+    document.getElementById("member-search-input").value = "";
+    const usersListContainer = document.getElementById("users-list");
+    usersListContainer.innerHTML = "Loading members...";
+
+    fetch(`${API_URL}/users`, {
+      headers: {
+        Authorization: `Bearer ${getCookie("ac")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        let users = data.items || data;
+        const currentUser = JSON.parse(localStorage.getItem("user"));
+        usersListContainer.innerHTML = "";
+
+        users.forEach((user) => {
+          if (currentUser && user.id === currentUser.id) return;
+
+          const label = document.createElement("label");
+          label.className = "user-checkbox-item";
+          label.innerHTML = `
+            <input type="checkbox" value="${user.id}" data-name="${user.name}" class="group-member-checkbox">
+            ${user.name}
+          `;
+          usersListContainer.appendChild(label);
+        });
+      })
+      .catch((err) => {
+        console.error("Error fetching users:", err);
+        usersListContainer.innerHTML = "Failed to load members.";
+      });
+  }
+}
+
+function closeGroupModal() {
+  const modal = document.getElementById("group-modal");
+  if (modal) {
+    modal.style.display = "none";
+  }
+}
+
+function filterMembers(query) {
+  const items = document.querySelectorAll(".user-checkbox-item");
+  const lowerQuery = query.toLowerCase();
+
+  items.forEach((item) => {
+    const userName = item.textContent.trim().toLowerCase();
+    if (userName.includes(lowerQuery)) {
+      item.style.display = "flex";
+    } else {
+      item.style.display = "none";
+    }
+  });
+}
+
+async function createGroup() {
+  const groupName = document.getElementById("group-name").value.trim();
+
+  if (!groupName) {
+    if (typeof showToast === "function")
+      showToast("error", "Group name is required");
+    return;
+  }
+
+  const selectedCheckboxes = document.querySelectorAll(
+    ".group-member-checkbox:checked",
+  );
+  const selectedMembers = Array.from(selectedCheckboxes).map((cb) => ({
+    id: cb.value,
+  }));
+
+  if (selectedMembers.length === 0) {
+    if (typeof showToast === "function")
+      showToast("error", "Please add at least one member");
+    return;
+  }
+  const btn = document.getElementById("create-group-btn");
+  btnLoading.start(btn);
+  try {
+    const token = await getCookie("ac");
+    fetch(`${API_URL}/groups`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        name: groupName,
+        memberIds: selectedMembers.map((m) => m.id),
+        type: "public",
+        senderId: JSON.parse(localStorage.getItem("user")).id,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to create group");
+        }
+        return res.json();
+      })
+      .then(() => {
+        if (typeof showToast === "function")
+          showToast("success", "Group created successfully");
+      })
+      .catch((err) => {
+        console.error("Error creating group:", err);
+        if (typeof showToast === "function")
+          showToast("error", "Failed to create group");
+      });
+  } catch (error) {
+    console.error("Error:", error);
+    if (typeof showToast === "function")
+      showToast("error", "An error occurred while creating the group");
+  } finally {
+    btnLoading.stop(btn);
+  }
+
+  closeGroupModal();
+}
+
+function getGroups() {
+  const userItem = localStorage.getItem("user");
+  if (!userItem) return;
+
+  const userId = JSON.parse(userItem).id;
+  const token = getCookie("ac");
+  fetch(`${API_URL}/groups?userId=${userId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Unauthorized");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      const groupsContainer = document.getElementById("groups-list");
+      if (!groupsContainer) return;
+      groupsContainer.innerHTML = "";
+      const groups = data;
+      groups.forEach((group) => {
+        const groupDiv = document.createElement("div");
+        groupDiv.className = "group";
+        groupDiv.dataset.id = group.id;
+        groupDiv.innerHTML = `
+          <div class="logo">${group.name.charAt(0).toUpperCase()}</div>
+          <div class="name">${group.name}</div>
+        `;
+        groupsContainer.appendChild(groupDiv);
+      });
+    })
+    .catch((err) => {
+      console.error("Error fetching groups:", err);
+    });
+}
+
+getGroups();
