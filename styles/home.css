@@ -1,6 +1,15 @@
+main {
+  width: calc(100% - 320px);
+}
+
+body.no-sidebar main {
+  width: 100%;
+}
+
 .container {
   max-width: 1200px;
   margin: 50px auto;
+  padding: 0 20px;
 }
 .chat-box {
   background-color: #b5def8;
@@ -333,19 +342,65 @@
 }
 
 @media only screen and (max-width: 1400px) {
+  .container {
+    margin: 20px 5%;
+    max-width: auto;
+  }
 }
 @media only screen and (max-width: 1200px) {
   .modal-content {
     max-width: 800px;
     position: relative;
-    width: 90%;
-    top: 10%;
+    width: 80%;
+    left: 10%;
+    top: 5%;
   }
 }
-@media only screen and (max-width: 1024) {
+@media only screen and (max-width: 1024px) {
+}
+@media only screen and (max-width: 900px) {
+  main {
+    width: 100%;
+  }
+  .container {
+    margin: 50px auto;
+    max-width: 100%;
+  }
 }
 @media only screen and (max-width: 768px) {
-  .modal-content {
+  main {
     width: 100%;
+  }
+  .container {
+    margin: 20px auto;
+    max-width: 100%;
+  }
+  .modal-content {
+    width: 95%;
+    left: 2.5%;
+    top: 5%;
+  }
+  .chat-box .chat-input {
+    flex-direction: column;
+  }
+  .message-content {
+    max-width: 80%;
+  }
+  .create-post {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .create-post input {
+    margin: 0;
+    width: 100%;
+  }
+  .post-body {
+    flex-direction: column;
+    align-items: center;
+  }
+  .post-body .thumbnail {
+    width: 100%;
+    height: auto;
   }
 }

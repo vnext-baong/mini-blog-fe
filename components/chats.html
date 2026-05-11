@@ -1,0 +1,48 @@
+<div class="chats">
+  <div class="groups">
+    <div class="groups-header">
+      <h3>Groups</h3>
+      <button class="btn" onclick="openGroupModal()">+</button>
+    </div>
+    <div id="groups-list" class="groups-list"></div>
+  </div>
+  <div class="users">
+    <h3>Inbox</h3>
+    <div class="user">
+      <div class="avatar">A</div>
+      <div class="name">Alice</div>
+    </div>
+    <div class="user">
+      <div class="avatar">B</div>
+      <div class="name">Bob</div>
+    </div>
+  </div>
+  <div id="group-modal" class="group-modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeGroupModal()">&times;</span>
+      <h2>Create Group</h2>
+      <input type="text" placeholder="Group Name" id="group-name" />
+      <div class="add-member">
+        <input
+          type="text"
+          id="member-search-input"
+          placeholder="Search users by name..."
+          onkeyup="filterMembers(this.value)"
+        />
+        <div id="users-list" class="users-checkbox-list"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeGroupModal()">
+          Cancel
+        </button>
+        <button
+          class="btn btn-primary"
+          id="create-group-btn"
+          onclick="createGroup()"
+        >
+          Create
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
