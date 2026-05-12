@@ -61,7 +61,7 @@ socket.on("receiveMessage", (message) => {
       const senderStr = message.sender?.name || message.senderName || "";
       msgDiv.innerHTML = `
       ${senderStr ? `<div class="msg-name" style="font-size: 0.75em; opacity: 0.8; margin-bottom: 2px;">${senderStr}</div>` : ""}
-      <div class="msg-content">${message.content}</div>
+      <div class="msg-content">${escapeHTML(message.content)}</div>
       <div class="msg-time" style="font-size: 0.7em; opacity: 0.6; margin-top: 2px; text-align: right;">${timeStr}</div>`;
       messagesContainer.appendChild(msgDiv);
       messagesContainer.scrollTop = messagesContainer.scrollHeight;
@@ -140,12 +140,12 @@ function displayMessage(message, type) {
 
   let nameHtml = "";
   if (type !== "sent" && currentSenderId !== lastSenderId) {
-    nameHtml = `<p class="message-name">${message.name || message.user?.name || ""}</p>`;
+    nameHtml = `<p class="message-name">${window.escapeHTML(message.name || message.user?.name || "")}</p>`;
   }
 
   messageElement.innerHTML = `
   ${nameHtml}
-  <p class="message-content">${message.content}</p>
+  <p class="message-content">${escapeHTML(message.content)}</p>
   <span class="message-timestamp live-timestamp" data-timestamp="${message.timestamp}">${formatTimeAgo(new Date(message.timestamp))}</span>
     `;
   messageElement.classList.add("message", type);
@@ -167,7 +167,9 @@ function updateTimestamps() {
 
 setInterval(updateTimestamps, 30000);
 
-sendBtn.addEventListener("click", sendMessage);
+if (sendBtn) {
+  sendBtn.addEventListener("click", sendMessage);
+}
 
 chatInput?.addEventListener("keypress", function (e) {
   if (e.key === "Enter") {
@@ -339,7 +341,7 @@ window.openChatPopup = async function openChatPopup(name, receiverId) {
       const senderStr = isMine ? "" : msg.sender?.name || msg.senderName || "";
       msgDiv.innerHTML = `
       ${senderStr ? `<div class="msg-name" style="font-size: 0.75em; opacity: 0.8; margin-bottom: 2px;">${senderStr}</div>` : ""}
-      <div class="msg-content">${msg.content}</div>
+      <div class="msg-content">${escapeHTML(msg.content)}</div>
       ${timeStr ? `<div class="msg-time" style="font-size: 0.7em; opacity: 0.6; margin-top: 2px; text-align: right;">${timeStr}</div>` : ""}
       `;
       messagesContainer.appendChild(msgDiv);
