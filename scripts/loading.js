@@ -9,28 +9,19 @@ const btnLoading = {
   },
 };
 
-const validateInput = (inputElement) => {
-  inputElement.addEventListener("beforeinput", (e) => {
-    if (e.data && !/^[\p{L}0-9\s\-.,!?()]*$/u.test(e.data)) {
-      e.preventDefault();
-    }
-  });
-
-  inputElement.addEventListener("input", (e) => {
-    const value = e.target.value;
-    if (!/^[\p{L}0-9\s\-.,!?()]*$/u.test(value)) {
-      e.target.value = value.replace(/[^\p{L}0-9\s\-.,!?()]/gu, "");
-    }
-  });
-
-  inputElement.addEventListener("paste", (e) => {
-    const pastedText = (e.clipboardData || window.clipboardData).getData(
-      "text",
-    );
-    if (!/^[\p{L}0-9\s\-.,!?()]*$/u.test(pastedText)) {
-      e.preventDefault();
-    }
-  });
+window.escapeHTML = function escapeHTML(str) {
+  if (!str) return "";
+  return String(str).replace(
+    /[&<>'"]/g,
+    (tag) =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "'": "&#39;",
+        '"': "&quot;",
+      })[tag] || tag,
+  );
 };
 
 const formatTimeAgo = (timestamp) => {
@@ -146,4 +137,19 @@ function getCookie(name) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
   if (parts.length === 2) return parts.pop().split(";").shift();
+}
+
+function escapeHTML(str) {
+  if (!str) return "";
+  return str.replace(
+    /[&<>'"]/g,
+    (tag) =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "'": "&#39;",
+        '"': "&quot;",
+      })[tag] || tag,
+  );
 }

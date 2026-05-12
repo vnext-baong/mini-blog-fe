@@ -71,7 +71,7 @@ async function stateRightHeader() {
   if (ac) {
     const user = await getMe(ac);
     rightHeader.innerHTML = `
-      <a href="profile.html" class="user-name">${user.name}</a>
+      <a href="profile.html" class="user-name">${window.escapeHTML(user.name)}</a>
       <a href="#" class="nav-item" id="logout" data-i18n="auth.logout">Đăng xuất</a>
     `;
     document.getElementById("logout").addEventListener("click", () => {
@@ -143,15 +143,15 @@ function getPosts(limit = 5, page = 1) {
         <div class='post-header'>
           <div class='author-info'>
             <img src='./assets/img/avt.jpg' alt='Avatar' class='avatar' height='50' width='50'/>
-            <h3 class='author'>${post.author.name}</h3>
+            <h3 class='author'>${window.escapeHTML(post.author.name)}</h3>
           </div>
           <p class='created-at' data-timestamp='${post.createdAt}'>${formatTimeAgo(post.createdAt)}</p>
         </div>
         <div class='post-body'>
           <img src='${post.thumbnail ? API_URL + post.thumbnail : "./assets/img/image.png"}' alt='Thumbnail' class='thumbnail'/>
           <div class='post-info'>
-            <h2 class='title'>${post.title}</h2>
-            <p class='content'>${post.content.substring(0, 100)}...</p>
+            <h2 class='title'>${window.escapeHTML(post.title)}</h2>
+            <p class='content'>${window.escapeHTML(post.content).substring(0, 100)}...</p>
           </div>
         </div>
         `;
@@ -398,8 +398,8 @@ function openGroupModal() {
           const label = document.createElement("label");
           label.className = "user-checkbox-item";
           label.innerHTML = `
-            <input type="checkbox" value="${user.id}" data-name="${user.name}" class="group-member-checkbox">
-            ${user.name}
+            <input type="checkbox" value="${user.id}" data-name="${window.escapeHTML(user.name)}" class="group-member-checkbox">
+            ${window.escapeHTML(user.name)}
           `;
           usersListContainer.appendChild(label);
         });

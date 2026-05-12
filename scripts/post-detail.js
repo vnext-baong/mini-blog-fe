@@ -8,12 +8,12 @@ async function getPostDetail() {
       const postDetail = document.getElementById("post-detail");
       postDetail.innerHTML = `
       <div class='post-header'>
-        <h1 class="title">${post.title}</h1>
+        <h1 class="title">${window.escapeHTML(post.title)}</h1>
         <p class="created-at" data-timestamp="${post.createdAt}">${formatTimeAgo(post.createdAt)}</p>
       </div>
       <img src='${post.thumbnail ? API_URL + post.thumbnail : "./assets/img/image.png"}' alt='Thumbnail' class='thumbnail'/>
-      <p class="content">${post.content}</p>
-      <p class="author">${post.author.name}</p>
+      <p class="content">${window.escapeHTML(post.content)}</p>
+      <p class="author">${window.escapeHTML(post.author.name)}</p>
     `;
       postId = post.id;
       getComments();
@@ -37,10 +37,10 @@ async function getComments() {
         commentElement.innerHTML = `
         <div class='comment-header'>
         <img src='./assets/img/avt.jpg' alt='Avatar' class='avatar' height='30' width='30'/>
-        <p class="comment-author">${comment.author.name}</p>
+        <p class="comment-author">${window.escapeHTML(comment.author.name)}</p>
         <p class="comment-created-at" data-timestamp="${comment.createdAt}">${formatTimeAgo(comment.createdAt)}</p>
         </div>
-        <p class="comment-content">${comment.content}</p>
+        <p class="comment-content">${window.escapeHTML(comment.content)}</p>
       `;
         commentList.appendChild(commentElement);
       });
