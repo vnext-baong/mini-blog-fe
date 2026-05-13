@@ -74,7 +74,6 @@
   top: 15%;
   position: relative;
   justify-content: center;
-  align-items: center;
   display: flex;
 }
 .group-modal .modal-content h2 {

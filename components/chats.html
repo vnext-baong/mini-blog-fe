@@ -8,14 +8,7 @@
   </div>
   <div class="users">
     <h3>Inbox</h3>
-    <div class="user">
-      <div class="avatar">A</div>
-      <div class="name">Alice</div>
-    </div>
-    <div class="user">
-      <div class="avatar">B</div>
-      <div class="name">Bob</div>
-    </div>
+    <div id="users-list" class="users-list"></div>
   </div>
   <div id="group-modal" class="group-modal">
     <div class="modal-content">
@@ -29,7 +22,7 @@
           placeholder="Search users by name..."
           onkeyup="filterMembers(this.value)"
         />
-        <div id="users-list" class="users-checkbox-list"></div>
+        <div id="group-users-list" class="users-checkbox-list"></div>
       </div>
       <div class="modal-footer">
         <button class="btn btn-secondary" onclick="closeGroupModal()">
@@ -38,7 +31,7 @@
         <button
           class="btn btn-primary"
           id="create-group-btn"
-          onclick="createGroup()"
+          onclick="createGroup('public')"
         >
           Create
         </button>

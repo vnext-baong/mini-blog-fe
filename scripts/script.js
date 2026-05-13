@@ -378,36 +378,22 @@ function openGroupModal() {
     modal.style.display = "flex";
     document.getElementById("group-name").value = "";
     document.getElementById("member-search-input").value = "";
-    const usersListContainer = document.getElementById("users-list");
-    usersListContainer.innerHTML = "Loading members...";
+    const usersListContainer = document.getElementById("group-users-list");
+    if (!usersListContainer) return;
+    usersListContainer.innerHTML = "";
 
-    fetch(`${API_URL}/users`, {
-      headers: {
-        Authorization: `Bearer ${getCookie("ac")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        let users = data.items || data;
-        const currentUser = JSON.parse(localStorage.getItem("user"));
-        usersListContainer.innerHTML = "";
+    const currentUser = JSON.parse(localStorage.getItem("user"));
+    users.forEach((user) => {
+      if (currentUser && user.id === currentUser.id) return;
 
-        users.forEach((user) => {
-          if (currentUser && user.id === currentUser.id) return;
-
-          const label = document.createElement("label");
-          label.className = "user-checkbox-item";
-          label.innerHTML = `
+      const label = document.createElement("label");
+      label.className = "user-checkbox-item";
+      label.innerHTML = `
             <input type="checkbox" value="${user.id}" data-name="${window.escapeHTML(user.name)}" class="group-member-checkbox">
             ${window.escapeHTML(user.name)}
           `;
-          usersListContainer.appendChild(label);
-        });
-      })
-      .catch((err) => {
-        console.error("Error fetching users:", err);
-        usersListContainer.innerHTML = "Failed to load members.";
-      });
+      usersListContainer.appendChild(label);
+    });
   }
 }
 
@@ -432,7 +418,7 @@ function filterMembers(query) {
   });
 }
 
-async function createGroup() {
+async function createGroup(type) {
   const groupName = document.getElementById("group-name").value.trim();
 
   if (!groupName) {
@@ -448,16 +434,19 @@ async function createGroup() {
     id: cb.value,
   }));
 
-  if (selectedMembers.length === 0) {
+  if (selectedMembers.length < 2) {
     if (typeof showToast === "function")
-      showToast("error", "Please add at least one member");
+      showToast("error", "Please select at least 2 members");
     return;
   }
   const btn = document.getElementById("create-group-btn");
+  const cancelBtn = document.querySelector("#group-modal .btn-secondary");
+  if (cancelBtn) cancelBtn.disabled = true;
+  btn.disabled = true;
   btnLoading.start(btn);
   try {
     const token = await getCookie("ac");
-    fetch(`${API_URL}/groups`, {
+    const response = await fetch(`${API_URL}/groups`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -466,34 +455,40 @@ async function createGroup() {
       body: JSON.stringify({
         name: groupName,
         memberIds: selectedMembers.map((m) => m.id),
-        type: "public",
+        type: type,
         senderId: JSON.parse(localStorage.getItem("user")).id,
       }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Failed to create group");
-        }
-        return res.json();
-      })
-      .then(() => {
-        if (typeof showToast === "function")
-          showToast("success", "Group created successfully");
-      })
-      .catch((err) => {
-        console.error("Error creating group:", err);
-        if (typeof showToast === "function")
-          showToast("error", "Failed to create group");
-      });
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      let errorMessage = "Failed to create group";
+      if (errorData.message) {
+        errorMessage = Array.isArray(errorData.message)
+          ? errorData.message.join(", ")
+          : errorData.message;
+      }
+      throw new Error(errorMessage);
+    }
+
+    if (typeof showToast === "function") {
+      showToast("success", "Group created successfully");
+    }
+    closeGroupModal();
   } catch (error) {
     console.error("Error:", error);
-    if (typeof showToast === "function")
-      showToast("error", "An error occurred while creating the group");
+    if (typeof showToast === "function") {
+      showToast(
+        "error",
+        error.message || "An error occurred while creating the group",
+      );
+    }
   } finally {
     btnLoading.stop(btn);
+    btn.disabled = false;
+    const cancelBtn = document.querySelector("#group-modal .btn-secondary");
+    if (cancelBtn) cancelBtn.disabled = false;
   }
-
-  closeGroupModal();
 }
 
 function getGroups() {
@@ -517,14 +512,14 @@ function getGroups() {
       const groupsContainer = document.getElementById("groups-list");
       if (!groupsContainer) return;
       groupsContainer.innerHTML = "";
-      const groups = data;
+      const groups = data.filter((group) => group.type === "public");
       groups.forEach((group) => {
         const groupDiv = document.createElement("div");
         groupDiv.className = "group";
         groupDiv.dataset.id = group.id;
         groupDiv.innerHTML = `
-          <div class="logo">${group.name.charAt(0).toUpperCase()}</div>
-          <div class="name">${group.name}</div>
+          <div class="logo">${window.escapeHTML(group.name).charAt(0).toUpperCase()}</div>
+          <div class="name">${window.escapeHTML(group.name)}</div>
         `;
         groupsContainer.appendChild(groupDiv);
       });
@@ -535,3 +530,45 @@ function getGroups() {
 }
 
 getGroups();
+const users = [];
+function getUsers() {
+  const token = getCookie("ac");
+  fetch(`${API_URL}/users`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Unauthorized");
+      }
+      return res.json();
+    })
+    .then((data) => {
+      const usersContainer = document.getElementById("users-list");
+      if (!usersContainer) return;
+      usersContainer.innerHTML = "";
+      const fetchedUsers = data.items || data;
+      users.length = 0;
+      fetchedUsers.forEach((user) => {
+        users.push(user);
+      });
+      const currentUser = JSON.parse(localStorage.getItem("user"));
+      users.forEach((user) => {
+        if (currentUser && user.id === currentUser.id) return;
+        const userDiv = document.createElement("div");
+        userDiv.className = "user";
+        userDiv.dataset.id = user.id;
+        userDiv.innerHTML = `
+          <div class="avatar">${user.name.charAt(0).toUpperCase()}</div>
+          <div class="name">${window.escapeHTML(user.name)}</div>
+        `;
+        usersContainer.appendChild(userDiv);
+      });
+    })
+    .catch((err) => {
+      console.error("Error fetching users:", err);
+    });
+}
+
+getUsers();

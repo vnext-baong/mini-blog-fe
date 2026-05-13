@@ -192,14 +192,35 @@ chatInput?.addEventListener("keypress", function (e) {
 window.setupChatPopupDelegation = function setupChatPopupDelegation() {
   const chatsContainer = document.getElementById("chats");
   if (chatsContainer) {
-    chatsContainer.addEventListener("click", function (e) {
+    chatsContainer.addEventListener("click", async function (e) {
       const chatItem = e.target.closest(".group, .user");
       if (chatItem) {
         const nameEl = chatItem.querySelector(".name");
-        const receiverId =
-          chatItem.dataset.id || chatItem.getAttribute("data-id");
+        let targetId = chatItem.dataset.id || chatItem.getAttribute("data-id");
+
+        if (chatItem.classList.contains("user")) {
+          try {
+            const token = await getCookie("ac");
+            const res = await fetch(
+              `${typeof API_URL !== "undefined" ? API_URL : ""}/groups/private/${targetId}`,
+              {
+                method: "POST",
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              },
+            );
+            if (res.ok) {
+              const data = await res.json();
+              targetId = data.id;
+            }
+          } catch (err) {
+            console.error("Error creating private group:", err);
+          }
+        }
+
         if (nameEl) {
-          openChatPopup(nameEl.innerText, receiverId);
+          openChatPopup(nameEl.innerText, targetId);
         }
       }
     });
@@ -410,8 +431,8 @@ window.openChatPopup = async function openChatPopup(name, receiverId) {
             ? ""
             : msg.sender?.name || msg.senderName || "";
           msgDiv.innerHTML = `
-          ${senderStr ? `<div class="msg-name" style="font-size: 0.75em; opacity: 0.8; margin-bottom: 2px;">${senderStr}</div>` : ""}
-          <div class="msg-content">${msg.content}</div>
+          ${senderStr ? `<div class="msg-name" style="font-size: 0.75em; opacity: 0.8; margin-bottom: 2px;">${escapeHTML(senderStr)}</div>` : ""}
+          <div class="msg-content">${escapeHTML(msg.content)}</div>
           ${timeStr ? `<div class="msg-time" style="font-size: 0.7em; opacity: 0.6; margin-top: 2px; text-align: right;">${timeStr}</div>` : ""}
           `;
           messagesContainer.prepend(msgDiv);
@@ -445,6 +466,11 @@ window.sendPopupMessage = function sendPopupMessage() {
         content: text,
       };
       window.chatSocket.emit("sendMessage", messageData, () => {});
+      window.chatSocket.emit("stopTyping", {
+        groupId: window.currentReceiverId,
+        name: JSON.parse(localStorage.getItem("user"))?.name,
+      });
+      if (window.popupTypingTimeout) clearTimeout(window.popupTypingTimeout);
     }
 
     const messagesContainer = document.getElementById("chatMessages");
@@ -452,7 +478,7 @@ window.sendPopupMessage = function sendPopupMessage() {
     msgDiv.className = "message outgoing";
     const timeStr = formatTimeAgo(new Date());
     msgDiv.innerHTML = `
-    <div class="msg-content">${text}</div>
+    <div class="msg-content">${escapeHTML(text)}</div>
     <div class="msg-time" style="font-size: 0.7em; opacity: 0.6; margin-top: 2px; text-align: right;">${timeStr}</div>
     `;
     messagesContainer.appendChild(msgDiv);
