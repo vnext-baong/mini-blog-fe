@@ -7,12 +7,15 @@
     "confirmPassword": "Xác nhận mật khẩu",
     "confirmPasswordPlaceholder": "Xác nhận mật khẩu...",
     "name": "Họ và tên",
+    "email": "Email",
+    "emailPlaceholder": "Nhập email...",
     "namePlaceholder": "Nhập họ và tên...",
     "login": "Đăng nhập",
     "register": "Đăng ký",
     "logout": "Đăng xuất",
-    "pleaseLogin": "Vui lòng đăng nhập để tiếp tục"
-  },
+    "pleaseLogin": "Vui lòng đăng nhập để tiếp tục",
+    "sentMail": "Email đã được gửi. Vui lòng kiểm tra hộp thư của bạn.",
+    "sentMailMessage": "Vui lòng kiểm tra hộp thư của bạn để xác minh email. Nếu bạn không nhận được email, hãy kiểm tra thư mục spam hoặc thử gửi lại."},
   "validation": {
     "usernameRequired": "Vui lòng nhập tên đăng nhập",
     "passwordRequired": "Vui lòng nhập mật khẩu",
@@ -20,7 +23,9 @@
     "confirmPasswordRequired": "Vui lòng xác nhận mật khẩu",
     "passwordMin": "Mật khẩu phải có ít nhất 6 ký tự",
     "passwordStrength": "Mật khẩu phải có ít nhất 1 chữ in hoa, 1 chữ thường và 1 chữ số",
-    "passwordMismatch": "Mật khẩu xác nhận không khớp"
+    "passwordMismatch": "Mật khẩu xác nhận không khớp",
+    "emailRequired": "Vui lòng nhập email",
+    "emailInvalid": "Địa chỉ email không hợp lệ"
   },
   "messages": {
     "greeting": "Xin chào",
@@ -28,7 +33,8 @@
     "loginError": "Đăng nhập thất bại. Vui lòng thử lại.",
     "registerSuccess": "Đăng ký thành công! Vui lòng đăng nhập.",
     "registerError": "Đăng ký thất bại. Vui lòng thử lại.",
-    "loginRequired": "Bạn cần đăng nhập để đăng bài viết"
+    "loginRequired": "Bạn cần đăng nhập để đăng bài viết",
+    "verifyEmail": "Vui lòng xác minh email của bạn để tiếp tục."
   },
   "createPost": {
     "createPost": "Tạo bài viết mới",

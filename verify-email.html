@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verify Your Email</title>
+    <link rel="stylesheet" href="./styles/main.css" />
+    <script src="https://unpkg.com/i18next@21.6.10/i18next.min.js"></script>
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: var(--background, #9ecae4);
+        margin: 0;
+      }
+      .verify-container {
+        text-align: center;
+        background: var(--surface, white);
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+      }
+      .spinner {
+        border: 4px solid var(--border-color, rgba(0, 0, 0, 0.1));
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border-left-color: var(--primary-color, #1a73e8);
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px auto;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      #status-message {
+        font-size: 1.1rem;
+        color: var(--text-color, #333);
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="verify-container">
+      <div id="loading-spinner" class="spinner"></div>
+      <div id="status-message">Đang xác thực email của bạn...</div>
+    </div>
+
+    <script src="./scripts/config.js"></script>
+    <script src="./scripts/translator.js"></script>
+    <script src="./scripts/verify-email.js"></script>
+  </body>
+</html>
