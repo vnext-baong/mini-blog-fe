@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Blog</title>
+    <link rel="stylesheet" href="./styles/sent-email.css" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Playwrite+IE:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+  </head>
+  <body>
+    <div id="header"></div>
+    <main>
+      <div class="sent-mail-container">
+        <div class="sent-mail-content">
+          <h2 data-i18n="auth.sentMail">Email đã được gửi</h2>
+          <p data-i18n="auth.sentMailMessage">
+            Vui lòng kiểm tra hộp thư của bạn để xác minh email. Nếu bạn không
+            nhận được email, hãy kiểm tra thư mục spam hoặc thử gửi lại.
+          </p>
+        </div>
+      </div>
+      <div id="toast-container" class="toast-container"></div>
+    </main>
+    <div id="footer"></div>
+    <script src="./scripts/loading.js"></script>
+    <script src="./scripts/config.js"></script>
+    <script src="./scripts/translator.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/login.js"></script>
+  </body>
+</html>

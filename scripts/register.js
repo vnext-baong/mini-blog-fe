@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   validateInput(document.getElementById("name"));
   validateInput(document.getElementById("password"));
   validateInput(document.getElementById("confirm-password"));
+  validateInput(document.getElementById("email"), "validation.emailRequired");
 });
 
 async function register() {
@@ -10,17 +11,33 @@ async function register() {
   const name = document.getElementById("name").value.trim();
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirm-password").value;
+  const email = document.getElementById("email").value.trim();
 
   document.getElementById("username-error").textContent = "";
   document.getElementById("name-error").textContent = "";
   document.getElementById("password-error").textContent = "";
   document.getElementById("confirm-password-error").textContent = "";
+  document.getElementById("email-error").textContent = "";
 
   let hasError = false;
 
   if (!username) {
     document.getElementById("username-error").textContent = i18next.t(
       "validation.usernameRequired",
+    );
+    hasError = true;
+  }
+
+  if (!email) {
+    document.getElementById("email-error").textContent = i18next.t(
+      "validation.emailRequired",
+    );
+    hasError = true;
+  }
+
+  if (email && !/^\S+@\S+\.\S+$/.test(email)) {
+    document.getElementById("email-error").textContent = i18next.t(
+      "validation.emailInvalid",
     );
     hasError = true;
   }
@@ -75,13 +92,13 @@ async function register() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ username, name, password }),
+      body: JSON.stringify({ username, name, password, email }),
     });
     const data = await response.json();
     if (response.ok) {
       showToast("success", i18next.t("toast.registerSuccess"));
       setTimeout(() => {
-        window.location.href = "login.html";
+        window.location.href = "sent-email.html";
       }, 1000);
     } else {
       showToast("error", data.message || i18next.t("toast.registerFailure"));

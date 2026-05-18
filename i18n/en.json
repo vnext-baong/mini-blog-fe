@@ -10,7 +10,12 @@
     "namePlaceholder": "Enter full name...",
     "login": "Login",
     "register": "Register",
-    "logout": "Logout"
+    "logout": "Logout",
+    "email": "Email",
+    "emailPlaceholder": "Enter email...",
+    "pleaseLogin": "Please login to continue",
+    "sentMail": "Email has been sent. Please check your inbox.",
+    "sentMailMessage": "Please check your inbox to verify your email. If you don't receive the email, please check your spam folder or try resending."
   },
   "validation": {
     "usernameRequired": "Please enter username",
@@ -19,7 +24,9 @@
     "confirmPasswordRequired": "Please confirm password",
     "passwordMin": "Password must be at least 6 characters",
     "passwordStrength": "Password must contain at least 1 uppercase letter, 1 lowercase letter and 1 number",
-    "passwordMismatch": "Password confirmation does not match"
+    "passwordMismatch": "Password confirmation does not match",
+    "emailRequired": "Please enter email",
+    "emailInvalid": "Invalid email address"
   },
   "messages": {
     "greeting": "Hello",
@@ -27,7 +34,8 @@
     "loginError": "Login failed. Please try again.",
     "registerSuccess": "Registration successful! Please login.",
     "registerError": "Registration failed. Please try again.",
-    "loginRequired": "You need to login to post an article"
+    "loginRequired": "You need to login to post an article",
+    "verifyEmail": "Please verify your email to continue."
   },
   "createPost": {
     "createPost": "Create New Post",

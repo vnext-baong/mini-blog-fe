@@ -1,0 +1,28 @@
+.sent-mail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: 190px;
+  justify-content: center;
+}
+.sent-mail-content {
+  width: 500px;
+  height: 400px;
+  background-color: #bee7ec;
+  align-items: center;
+  border-radius: 16px;
+  padding: 10px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.sent-mail-content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.sent-mail-content p {
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+}
