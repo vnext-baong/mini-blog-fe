@@ -16,6 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
   setPasswordToggleIcon(".old-password-toggle");
   setPasswordToggleIcon(".new-password-toggle");
   setPasswordToggleIcon(".confirm-password-toggle");
+
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get("tab") === "password") {
+    const tabBtns = document.querySelectorAll(".tab-btn");
+    if (tabBtns.length > 1) {
+      tabBtns[1].click();
+    }
+  }
 });
 
 function setPasswordToggleIcon(selector) {

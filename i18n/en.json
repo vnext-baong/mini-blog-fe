@@ -1,4 +1,8 @@
 {
+  "user": {
+    "editProfile": "Edit Profile",
+    "changePassword": "Change Password"
+  },
   "auth": {
     "username": "Username",
     "usernamePlaceholder": "Enter username...",
@@ -69,5 +73,10 @@
     "placeholder": "Enter message...",
     "send": "Send",
     "isTyping": "is typing..."
+  },
+  "maintenance": {
+    "title": "Maintenance Mode",
+    "message": "The site is currently under maintenance. Please check back later."
   }
+
 }

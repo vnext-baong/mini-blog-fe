@@ -1,4 +1,8 @@
 {
+  "user": {
+    "editProfile": "Sửa thông tin",
+    "changePassword": "Đổi mật khẩu"
+  },
   "auth": {
     "username": "Tên đăng nhập",
     "usernamePlaceholder": "Nhập tên đăng nhập...",
@@ -69,5 +73,9 @@
     "placeholder": "Nhập tin nhắn...",
     "send": "Gửi",
     "isTyping": "đang nhập..."
+  },
+  "maintenance": {
+    "title": "Chế độ bảo trì",
+    "message": "Trang web hiện đang được bảo trì. Vui lòng quay lại sau."
   }
 }
