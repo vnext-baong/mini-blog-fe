@@ -48,7 +48,12 @@ async function login() {
       localStorage.setItem("user", JSON.stringify(userData));
       showToast("success", i18next.t("messages.loginSuccess"));
       setTimeout(() => {
-        window.location.href = "index.html";
+        const userRoles = userData.roles;
+        if (userRoles == "admin") {
+          window.location.href = "admin-maintenance.html";
+        } else {
+          window.location.href = "index.html";
+        }
       }, 1000);
     } else {
       showToast("error", data.message || i18next.t("messages.loginError"));

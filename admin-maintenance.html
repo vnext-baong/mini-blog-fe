@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Maintenance Management</title>
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="stylesheet" href="./styles/admin-maintenance.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Playwrite+IE:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="header"></div>
+    <main class="admin-container">
+      <header class="admin-header">
+        <h1>Bảo trì</h1>
+        <p>Quản lý chế độ bảo trì</p>
+      </header>
+
+      <div class="admin-content">
+        <div class="admin-card maintenance-status-card">
+          <div class="card-info">
+            <h2>Chế độ Bảo trì</h2>
+            <p>
+              Bật chế độ bảo trì sẽ tạm thời ngăn người dùng truy cập vào hệ
+              thống trong khi bạn thực hiện các công việc bảo trì cần thiết. Bạn
+              có thể thêm các địa chỉ IP hoặc người dùng vào danh sách trắng để
+              họ vẫn có thể truy cập trong thời gian bảo trì.
+            </p>
+          </div>
+          <div class="toggle-container">
+            <label class="switch">
+              <input
+                type="checkbox"
+                id="maintenance-toggle"
+                onchange="toggleMaintenanceMode(this.checked)"
+              />
+              <span class="slider round"></span>
+            </label>
+            <span id="maintenance-status-text" class="status-off">OFF</span>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="card-header">
+            <h2>Danh sách IP được phép</h2>
+          </div>
+          <form class="add-form" onsubmit="addWhitelistIp(event)">
+            <input
+              type="text"
+              id="ip-address"
+              placeholder="IP Address (e.g., 192.168.1.1)"
+              required
+            />
+            <input id="ip-description" placeholder="Description" required />
+            <button type="submit" class="btn-primary">Thêm IP</button>
+          </form>
+          <div class="table-container">
+            <table id="ip-table">
+              <thead>
+                <tr>
+                  <th>IP Address</th>
+                  <th>Mô tả</th>
+                  <th>Xóa</th>
+                </tr>
+              </thead>
+              <tbody id="ip-list"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="card-header">
+            <h2>Người dùng được phép</h2>
+          </div>
+          <form class="add-form" onsubmit="addWhitelistUser(event)">
+            <select id="user-id" required>
+              <option value="" disabled selected>Chọn Người dùng</option>
+            </select>
+            <button type="submit" class="btn-primary">Thêm Người dùng</button>
+          </form>
+          <div class="table-container">
+            <table id="user-table">
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                </tr>
+              </thead>
+              <tbody id="user-list"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+    <div id="toast-container"></div>
+    <script src="./scripts/loading.js"></script>
+    <script src="./scripts/config.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/admin-maintenance.js"></script>
+  </body>
+</html>
