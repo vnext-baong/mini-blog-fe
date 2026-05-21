@@ -71,8 +71,17 @@ async function stateRightHeader() {
   if (ac) {
     const user = await getMe(ac);
     rightHeader.innerHTML = `
-      <a href="profile.html" class="user-name">${window.escapeHTML(user.name)}</a>
-      <a href="#" class="nav-item" id="logout" data-i18n="auth.logout">Đăng xuất</a>
+      <div class="user-dropdown dropdown">
+        <div class="user-avatar-btn change-lang dropdown-toggle" style="width: auto; padding: 4px 12px; border-radius: 20px; display: flex; align-items: center; gap: 8px; cursor: pointer;">
+          <span class="user-name" style="margin: 0;">${window.escapeHTML(user.name)}</span>
+          <img src="${user.avatar ? API_URL + user.avatar : './assets/img/avt.jpg'}" alt="Avatar" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; margin: 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"/>
+        </div>
+        <div class="dropdown-content user-dropdown-content" style="min-width: 180px; top: 110%; right: 0;">
+          <a href="profile.html" class="dropdown-item" data-i18n="user.editProfile">Sửa thông tin</a>
+          <a href="profile.html?tab=password" class="dropdown-item" data-i18n="user.changePassword">Đổi mật khẩu</a>
+          <a href="#" class="dropdown-item" id="logout" data-i18n="auth.logout" style="color: #d32f2f;">Đăng xuất</a>
+        </div>
+      </div>
     `;
     document.getElementById("logout").addEventListener("click", () => {
       document.cookie = "ac=; path=/; max-age=0; secure; samesite=strict";
@@ -572,3 +581,27 @@ function getUsers() {
 }
 
 getUsers();
+
+document.addEventListener("click", (e) => {
+  const isDropdownToggle = e.target.closest(".dropdown-toggle");
+
+  if (!isDropdownToggle) {
+    document.querySelectorAll(".dropdown-content").forEach((content) => {
+      content.classList.remove("show");
+    });
+    return;
+  }
+
+  const currentDropdown = e.target.closest(".dropdown");
+  if (currentDropdown) {
+    const currentContent = currentDropdown.querySelector(".dropdown-content");
+    document.querySelectorAll(".dropdown-content").forEach((content) => {
+      if (content !== currentContent) {
+        content.classList.remove("show");
+      }
+    });
+    if (currentContent) {
+      currentContent.classList.toggle("show");
+    }
+  }
+});

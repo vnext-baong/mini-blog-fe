@@ -1,4 +1,8 @@
 {
+  "user": {
+    "editProfile": "情報を編集する",
+    "changePassword": "パスワードを変更する"
+  },
   "auth": {
     "username": "ユーザー名",
     "usernamePlaceholder": "ユーザー名を入力...",
@@ -63,5 +67,9 @@
     "placeholder": "メッセージを入力...",
     "send": "送信",
     "isTyping": "が入力中..."
+  },
+  "maintenance": {
+    "title": "メンテナンスモード",
+    "message": "現在サイトはメンテナンス中です。後でもう一度確認してください。"
   }
 }
