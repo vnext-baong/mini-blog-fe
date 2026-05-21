@@ -138,7 +138,13 @@ let currentPage = 1;
 let totalPage = 1;
 
 function getPosts(limit = 5, page = 1) {
-  fetch(`${API_URL}/posts?limit=${limit}&page=${page}`)
+  const token = getCookie("ac");
+  const headers = {};
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+  }
+
+  fetch(`${API_URL}/posts?limit=${limit}&page=${page}`, { headers })
     .then((response) => response.json())
     .then((data) => {
       const postsContainer = document.getElementById("posts");
