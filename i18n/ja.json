@@ -1,4 +1,11 @@
 {
+  "header": {
+    "home": "ホーム",
+    "latest": "最新",
+    "topics": "トピック",
+    "loading": "読み込んでいます...",
+    "searchPlaceholder": "記事を検索..."
+  },
   "user": {
     "editProfile": "情報を編集する",
     "changePassword": "パスワードを変更する"
@@ -44,7 +51,9 @@
     "titlePlaceholder": "タイトルを入力...",
     "contentPlaceholder": "内容を入力...",
     "cancel": "キャンセル",
-    "submit":"記事を投稿"
+    "submit":"記事を投稿",
+    "topic": "トピック",
+    "selectTopic": "トピックを選択"
 
   },
   "postDetail":{
@@ -71,5 +80,29 @@
   "maintenance": {
     "title": "メンテナンスモード",
     "message": "現在サイトはメンテナンス中です。後でもう一度確認してください。"
+  },
+  "intro": {
+    "slide1Title": "Mini Blogへようこそ",
+    "slide1Content": "毎日、面白い記事やトピックを発見しましょう。",
+    "slide2Title": "知識をシェアしよう",
+    "slide2Content": "コミュニティに参加して、学び、情熱を共有しましょう。",
+    "slide3Title": "他の人とつながろう",
+    "slide3Content": "お気に入りの著者をフォローして、最新情報を入手しましょう。"
+  },
+  "footer": {
+    "tagline": "知識を共有し、コミュニティをつなぎ、各記事を通じて世界を探る場所。",
+    "explore": "探る",
+    "home": "ホーム",
+    "latest": "最新記事",
+    "popular": "人気最高",
+    "account": "アカウント",
+    "about": "詳細",
+    "aboutUs": "詳細",
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約",
+    "contact": "コンタクト",
+    "careers": "求人",
+    "contactTitle": "お問い合わせ",
+    "copyright": "© 2025 Mini Blog · Powered by VNEXT Software. 全権利保留。"
   }
 }

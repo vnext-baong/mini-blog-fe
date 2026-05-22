@@ -1,5 +1,5 @@
-const API_URL = "https://mini-blog-32rh.onrender.com";
-// const API_URL = "http://localhost:3000";
+// const API_URL = "https://mini-blog-32rh.onrender.com";
+const API_URL = "http://localhost:3000";
 
 const originalFetch = window.fetch;
 window.fetch = async function (...args) {

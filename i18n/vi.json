@@ -1,4 +1,11 @@
 {
+  "header": {
+    "home": "Trang chủ",
+    "latest": "Mới nhất",
+    "topics": "Chủ đề",
+    "loading": "Đang tải...",
+    "searchPlaceholder": "Tìm kiếm bài viết..."
+  },
   "user": {
     "editProfile": "Sửa thông tin",
     "changePassword": "Đổi mật khẩu"
@@ -50,7 +57,9 @@
     "titlePlaceholder": "Nhập tiêu đề bài viết",
     "contentPlaceholder": "Nhập nội dung bài viết",
     "cancel": "Hủy",
-    "submit":"Đăng bài"
+    "submit":"Đăng bài",
+    "topic": "Chủ đề",
+    "selectTopic": "Chọn chủ đề"
 
   },
   "postDetail":{
@@ -77,5 +86,29 @@
   "maintenance": {
     "title": "Chế độ bảo trì",
     "message": "Trang web hiện đang được bảo trì. Vui lòng quay lại sau."
+  },
+  "intro": {
+    "slide1Title": "Chào mừng đến với Mini Blog",
+    "slide1Content": "Khám phá những bài viết và chủ đề thú vị mỗi ngày.",
+    "slide2Title": "Chia sẻ kiến thức",
+    "slide2Content": "Tham gia cộng đồng, học hỏi và chia sẻ đam mê của bạn.",
+    "slide3Title": "Kết nối với mọi người",
+    "slide3Content": "Theo dõi các tác giả yêu thích của bạn và cập nhật thông tin mới nhất."
+  },
+  "footer": {
+    "tagline": "Nơi chia sẻ kiến thức, kết nối cộng đồng và khám phá thế giới qua từng bài viết.",
+    "explore": "Khám phá",
+    "home": "Trang chủ",
+    "latest": "Bài viết mới nhất",
+    "popular": "Phổ biến nhất",
+    "account": "Tài khoản",
+    "about": "Về chúng tôi",
+    "aboutUs": "Giới thiệu",
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản sử dụng",
+    "contact": "Liên hệ",
+    "careers": "Tuyển dụng",
+    "contactTitle": "Liên hệ",
+    "copyright": "© 2025 Mini Blog · Powered by VNEXT Software. Tất cả quyền được bảo lưu."
   }
 }
