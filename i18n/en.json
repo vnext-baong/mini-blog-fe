@@ -1,4 +1,11 @@
 {
+  "header": {
+    "home": "Home",
+    "latest": "Latest",
+    "topics": "Topics",
+    "loading": "Loading...",
+    "searchPlaceholder": "Search posts..."
+  },
   "user": {
     "editProfile": "Edit Profile",
     "changePassword": "Change Password"
@@ -51,7 +58,9 @@
     "titlePlaceholder": "Enter post title",
     "contentPlaceholder": "Enter post content",
     "cancel": "Cancel",
-    "submit":"Post"
+    "submit":"Post",
+    "topic": "Topic",
+    "selectTopic": "Select a topic"
   },
   "postDetail":{
     "comment": "Comment",
@@ -77,6 +86,29 @@
   "maintenance": {
     "title": "Maintenance Mode",
     "message": "The site is currently under maintenance. Please check back later."
+  },
+  "intro": {
+    "slide1Title": "Welcome to Mini Blog",
+    "slide1Content": "Discover interesting posts and topics every day.",
+    "slide2Title": "Share your knowledge",
+    "slide2Content": "Join the community, learn and share your passion.",
+    "slide3Title": "Connect with others",
+    "slide3Content": "Follow your favorite authors and stay updated."
+  },
+  "footer": {
+    "tagline": "A place to share knowledge, connect communities and explore the world through every post.",
+    "explore": "Explore",
+    "home": "Home",
+    "latest": "Latest Posts",
+    "popular": "Most Popular",
+    "account": "Account",
+    "about": "About Us",
+    "aboutUs": "About",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "contact": "Contact",
+    "careers": "Careers",
+    "contactTitle": "Contact",
+    "copyright": "© 2025 Mini Blog · Powered by VNEXT Software. All rights reserved."
   }
-
 }

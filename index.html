@@ -18,6 +18,58 @@
     <div id="header"></div>
     <main>
       <div class="container">
+        <div class="intro-slider-container">
+          <div class="intro-slide fade active">
+            <img
+              src="https://picsum.photos/1200/400?random=1"
+              alt="Intro Slide 1"
+              class="slide-img"
+            />
+            <div class="slide-caption">
+              <h2 data-i18n="intro.slide1Title">Chào mừng đến với Mini Blog</h2>
+              <p data-i18n="intro.slide1Content">
+                Khám phá những bài viết và chủ đề thú vị mỗi ngày.
+              </p>
+            </div>
+          </div>
+          <div class="intro-slide fade">
+            <img
+              src="https://picsum.photos/1200/400?random=2"
+              alt="Intro Slide 2"
+              class="slide-img"
+            />
+            <div class="slide-caption">
+              <h2 data-i18n="intro.slide2Title">Chia sẻ kiến thức</h2>
+              <p data-i18n="intro.slide2Content">
+                Tham gia cộng đồng, học hỏi và chia sẻ đam mê của bạn.
+              </p>
+            </div>
+          </div>
+          <div class="intro-slide fade">
+            <img
+              src="https://picsum.photos/1200/400?random=3"
+              alt="Intro Slide 3"
+              class="slide-img"
+            />
+            <div class="slide-caption">
+              <h2 data-i18n="intro.slide3Title">Khám phá thế giới</h2>
+              <p data-i18n="intro.slide3Content">
+                Đọc những bài viết thú vị từ mọi người.
+              </p>
+            </div>
+          </div>
+          <a class="slide-prev" onclick="plusIntroSlides(-1)">&#10094;</a>
+          <a class="slide-next" onclick="plusIntroSlides(1)">&#10095;</a>
+          <div class="slide-dots">
+            <span
+              class="intro-dot active"
+              onclick="currentIntroSlide(1)"
+            ></span>
+            <span class="intro-dot" onclick="currentIntroSlide(2)"></span>
+            <span class="intro-dot" onclick="currentIntroSlide(3)"></span>
+          </div>
+        </div>
+
         <div class="create-post">
           <img
             src="./assets/img/avt.jpg"
@@ -48,6 +100,20 @@
           <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2 data-i18n="createPost.createPost"></h2>
+
+            <div class="topic">
+              <label for="post-topic" data-i18n="createPost.topic"></label>
+              <select id="post-topic">
+                <option
+                  value=""
+                  disabled
+                  selected
+                  data-i18n="createPost.selectTopic"
+                >
+                  Chọn chủ đề
+                </option>
+              </select>
+            </div>
             <div class="title">
               <label for="post-title" data-i18n="createPost.title"></label>
               <input
@@ -92,7 +158,7 @@
       </div>
     </main>
     <div id="chats"></div>
-    <!-- <div id="footer"></div> -->
+    <div id="footer"></div>
     <script src="./scripts/loading.js"></script>
     <script src="./scripts/config.js"></script>
     <script src="./scripts/translator.js"></script>
