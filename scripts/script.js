@@ -33,6 +33,8 @@ async function LoadLayout() {
     if (typeof window.setupChatPopupDelegation === "function") {
       window.setupChatPopupDelegation();
     }
+    if (typeof getGroups === "function") getGroups();
+    if (typeof getUsers === "function") getUsers();
   } else {
     const chatsContainer = document.getElementById("chats");
     if (chatsContainer) chatsContainer.style.display = "none";
@@ -212,11 +214,14 @@ function closeModal() {
   const modal = document.querySelector(".modal");
   modal.style.display = "none";
   const titleInput = document.getElementById("post-title");
-  const contentInput = document.getElementById("post-content");
+
+  if (window.quill) {
+    window.quill.setContents([]);
+  }
+
   const thumbnailInput = document.getElementById("post-thumbnail");
   const thumbnailPreview = document.getElementById("thumbnail-preview");
   titleInput.value = "";
-  contentInput.value = "";
   thumbnailInput.value = "";
   thumbnailPreview.innerHTML = "";
 }
@@ -414,7 +419,9 @@ function renderPostCard(post) {
           <span>${formattedDate}</span>
         </div>
       </div>
-      <p class="card-text">${window.escapeHTML(post.content || "").substring(0, 120)}…</p>
+      <div class="card-text">${window
+        .escapeHTML((post.content || "").replace(/<[^>]*>?/gm, ""))
+        .substring(0, 120)}…</div>
     </div>`;
   card.addEventListener("click", () => {
     window.location.href = `post-detail.html?slug=${post.slug}`;
@@ -747,16 +754,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const postTitle = document.getElementById("post-title");
   if (postTitle) validateInput(postTitle);
 
-  const postContent = document.getElementById("post-content");
-  if (postContent) validateInput(postContent);
-
   const chatInput = document.getElementById("chat-input");
   if (chatInput) validateInput(chatInput);
 });
 
 async function submitPost() {
   const title = document.getElementById("post-title").value.trim();
-  const content = document.getElementById("post-content").value.trim();
+
+  let content = "";
+  if (window.quill) {
+    if (window.quill.getText().trim() === "") {
+      content = "";
+    } else {
+      content = window.quill.root.innerHTML.trim();
+    }
+  }
+
   const thumbnailInput = document.getElementById("post-thumbnail");
   const topicSelect = document.getElementById("post-topic");
   const topicId = topicSelect?.value || "";
@@ -781,6 +794,7 @@ async function submitPost() {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
+    console.log("Submitting post with topicId:", content);
     formData.append("authorId", userId);
     if (topicId) formData.append("topicId", topicId);
 
@@ -994,7 +1008,6 @@ function getGroups() {
     });
 }
 
-getGroups();
 const users = [];
 function getUsers() {
   const token = getCookie("ac");
@@ -1035,8 +1048,6 @@ function getUsers() {
       console.error("Error fetching users:", err);
     });
 }
-
-getUsers();
 
 document.addEventListener("click", (e) => {
   const isDropdownToggle = e.target.closest(".dropdown-toggle");

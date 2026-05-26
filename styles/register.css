@@ -8,7 +8,7 @@
   font-size: 36px;
   text-align: center;
   margin-bottom: 25px;
-  color: #007bff;
+  color: #000080;
 }
 .reg-form {
   display: flex;
@@ -34,14 +34,14 @@
 .reg-container .submit-btn {
   font-size: 16px;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #000080;
   color: #fff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
 }
 .reg-container .submit-btn:hover {
-  background-color: #0056b3;
+  background-color: #0000cd;
 }
 .error-message {
   color: #dc3545;
