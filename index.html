@@ -11,153 +11,245 @@
       href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Playwrite+IE:wght@100..400&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
     <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
     <script src="https://cdn.socket.io/4.7.4/socket.io.min.js"></script>
   </head>
   <body>
     <div id="header"></div>
-    <main>
-      <div class="container">
-        <div class="intro-slider-container">
-          <div class="intro-slide fade active">
-            <img
-              src="https://picsum.photos/1200/400?random=1"
-              alt="Intro Slide 1"
-              class="slide-img"
-            />
-            <div class="slide-caption">
-              <h2 data-i18n="intro.slide1Title">Chào mừng đến với Mini Blog</h2>
-              <p data-i18n="intro.slide1Content">
-                Khám phá những bài viết và chủ đề thú vị mỗi ngày.
-              </p>
-            </div>
-          </div>
-          <div class="intro-slide fade">
-            <img
-              src="https://picsum.photos/1200/400?random=2"
-              alt="Intro Slide 2"
-              class="slide-img"
-            />
-            <div class="slide-caption">
-              <h2 data-i18n="intro.slide2Title">Chia sẻ kiến thức</h2>
-              <p data-i18n="intro.slide2Content">
-                Tham gia cộng đồng, học hỏi và chia sẻ đam mê của bạn.
-              </p>
-            </div>
-          </div>
-          <div class="intro-slide fade">
-            <img
-              src="https://picsum.photos/1200/400?random=3"
-              alt="Intro Slide 3"
-              class="slide-img"
-            />
-            <div class="slide-caption">
-              <h2 data-i18n="intro.slide3Title">Khám phá thế giới</h2>
-              <p data-i18n="intro.slide3Content">
-                Đọc những bài viết thú vị từ mọi người.
-              </p>
-            </div>
-          </div>
-          <a class="slide-prev" onclick="plusIntroSlides(-1)">&#10094;</a>
-          <a class="slide-next" onclick="plusIntroSlides(1)">&#10095;</a>
-          <div class="slide-dots">
-            <span
-              class="intro-dot active"
-              onclick="currentIntroSlide(1)"
-            ></span>
-            <span class="intro-dot" onclick="currentIntroSlide(2)"></span>
-            <span class="intro-dot" onclick="currentIntroSlide(3)"></span>
-          </div>
-        </div>
-
-        <div class="create-post">
-          <img
-            src="./assets/img/avt.jpg"
-            alt="avt"
-            width="60"
-            height="60"
-            class="avt"
-          />
-          <input
-            type="text"
-            data-i18n-placeholder="createPost.createPlaceholder"
-            readonly
-            onclick="openModal()"
-          />
-        </div>
-        <div id="posts"></div>
-        <div class="pagination">
-          <select>
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-          </select>
-          <button class="prev-btn btn" onclick="prevPage()">‹</button>
-          <span id="page-info"></span>
-          <button class="next-btn btn" onclick="nextPage()">›</button>
-        </div>
-        <div class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2 data-i18n="createPost.createPost"></h2>
-
-            <div class="topic">
-              <label for="post-topic" data-i18n="createPost.topic"></label>
-              <select id="post-topic">
-                <option
-                  value=""
-                  disabled
-                  selected
-                  data-i18n="createPost.selectTopic"
-                >
-                  Chọn chủ đề
-                </option>
-              </select>
-            </div>
-            <div class="title">
-              <label for="post-title" data-i18n="createPost.title"></label>
-              <input
-                type="text"
-                id="post-title"
-                data-i18n-placeholder="createPost.titlePlaceholder"
+    <div class="main-layout">
+      <main>
+        <div class="container">
+          <div class="intro-slider-container">
+            <div class="intro-slide fade active">
+              <img
+                src="https://picsum.photos/1200/400?random=1"
+                alt="Intro Slide 1"
+                class="slide-img"
               />
+              <div class="slide-caption">
+                <h2 data-i18n="intro.slide1Title">
+                  Chào mừng đến với Mini Blog
+                </h2>
+                <p data-i18n="intro.slide1Content">
+                  Khám phá những bài viết và chủ đề thú vị mỗi ngày.
+                </p>
+              </div>
             </div>
-            <div class="content">
-              <label for="post-content" data-i18n="createPost.content"></label>
-              <textarea
-                id="post-content"
-                data-i18n-placeholder="createPost.contentPlaceholder"
-              ></textarea>
-            </div>
-            <div class="thumbnail">
-              <label
-                for="post-thumbnail"
-                data-i18n="createPost.thumbnail"
-              ></label>
-              <input
-                type="file"
-                id="post-thumbnail"
-                accept="image/*"
-                onchange="previewImage()"
+            <div class="intro-slide fade">
+              <img
+                src="https://picsum.photos/1200/400?random=2"
+                alt="Intro Slide 2"
+                class="slide-img"
               />
-              <div id="thumbnail-preview" class="thumbnail-preview"></div>
+              <div class="slide-caption">
+                <h2 data-i18n="intro.slide2Title">Chia sẻ kiến thức</h2>
+                <p data-i18n="intro.slide2Content">
+                  Tham gia cộng đồng, học hỏi và chia sẻ đam mê của bạn.
+                </p>
+              </div>
             </div>
-            <div class="modal-footer">
-              <button class="submit-btn" onclick="submitPost()">
-                <span data-i18n="createPost.submit"></span>
-                <div class="loader"></div>
-              </button>
-              <button
-                class="cancel-btn"
-                onclick="closeModal()"
-                data-i18n="createPost.cancel"
-              ></button>
+            <div class="intro-slide fade">
+              <img
+                src="https://picsum.photos/1200/400?random=3"
+                alt="Intro Slide 3"
+                class="slide-img"
+              />
+              <div class="slide-caption">
+                <h2 data-i18n="intro.slide3Title">Khám phá thế giới</h2>
+                <p data-i18n="intro.slide3Content">
+                  Đọc những bài viết thú vị từ mọi người.
+                </p>
+              </div>
+            </div>
+            <a class="slide-prev" onclick="plusIntroSlides(-1)">&#10094;</a>
+            <a class="slide-next" onclick="plusIntroSlides(1)">&#10095;</a>
+            <div class="slide-dots">
+              <span
+                class="intro-dot active"
+                onclick="currentIntroSlide(1)"
+              ></span>
+              <span class="intro-dot" onclick="currentIntroSlide(2)"></span>
+              <span class="intro-dot" onclick="currentIntroSlide(3)"></span>
+            </div>
+          </div>
+
+          <div class="create-post">
+            <img
+              src="./assets/img/avt.jpg"
+              alt="avt"
+              width="60"
+              height="60"
+              class="avt"
+            />
+            <input
+              type="text"
+              data-i18n-placeholder="createPost.createPlaceholder"
+              readonly
+              onclick="openModal()"
+            />
+          </div>
+          <div id="posts"></div>
+          <div class="pagination">
+            <select>
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="20">20</option>
+            </select>
+            <button class="prev-btn btn" onclick="prevPage()">‹</button>
+            <span id="page-info"></span>
+            <button class="next-btn btn" onclick="nextPage()">›</button>
+          </div>
+          <div class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal()">&times;</span>
+              <h2 data-i18n="createPost.createPost"></h2>
+
+              <div class="topic">
+                <label for="post-topic" data-i18n="createPost.topic"></label>
+                <select id="post-topic">
+                  <option
+                    value=""
+                    disabled
+                    selected
+                    data-i18n="createPost.selectTopic"
+                  >
+                    Chọn chủ đề
+                  </option>
+                </select>
+              </div>
+              <div class="title">
+                <label for="post-title" data-i18n="createPost.title"></label>
+                <input
+                  type="text"
+                  id="post-title"
+                  data-i18n-placeholder="createPost.titlePlaceholder"
+                />
+              </div>
+              <div class="content">
+                <label
+                  for="post-content"
+                  data-i18n="createPost.content"
+                ></label>
+                <div id="editor">
+                  <p data-i18n="createPost.contentPlaceholder">
+                    Viết nội dung bài viết tại đây...
+                  </p>
+                </div>
+                <script>
+                  var toolbarOptions = [
+                    [{ header: [1, 2, 3, false] }],
+                    ["bold", "italic", "underline", "strike"],
+                    ["blockquote", "code-block"],
+                    [{ list: "ordered" }, { list: "bullet" }],
+                    [{ script: "sub" }, { script: "super" }],
+                    [{ color: [] }, { background: [] }],
+                    ["link", "image", "video"],
+                    ["clean"],
+                  ];
+
+                  window.quill = new Quill("#editor", {
+                    modules: {
+                      toolbar: {
+                        container: toolbarOptions,
+                        handlers: {
+                          image: imageHandler,
+                        },
+                      },
+                    },
+                    theme: "snow",
+                  });
+
+                  function imageHandler() {
+                    const input = document.createElement("input");
+                    input.setAttribute("type", "file");
+                    input.setAttribute("accept", "image/*");
+                    input.click();
+
+                    input.onchange = async () => {
+                      const file = input.files[0];
+                      if (!file) return;
+
+                      const formData = new FormData();
+                      formData.append("image", file);
+
+                      try {
+                        const API_ENDPOINT =
+                          typeof API_URL !== "undefined" ? API_URL : "";
+                        const token =
+                          typeof getCookie === "function"
+                            ? getCookie("ac")
+                            : "";
+
+                        const response = await fetch(
+                          `${API_ENDPOINT}/posts/upload-image`,
+                          {
+                            method: "POST",
+                            headers: token
+                              ? { Authorization: `Bearer ${token}` }
+                              : {},
+                            body: formData,
+                          },
+                        );
+
+                        if (response.ok) {
+                          const data = await response.json();
+                          const imageUrl = data.url;
+
+                          const range = window.quill.getSelection(true);
+                          window.quill.insertEmbed(
+                            range.index,
+                            "image",
+                            imageUrl,
+                          );
+                          window.quill.setSelection(range.index + 1);
+                        } else {
+                          if (typeof showToast !== "undefined")
+                            showToast("error", "Lỗi gửi ảnh lên Server.");
+                        }
+                      } catch (error) {
+                        console.error("Upload error:", error);
+                        if (typeof showToast !== "undefined")
+                          showToast("error", "Lỗi kết nối khi upload ảnh.");
+                      }
+                    };
+                  }
+                </script>
+              </div>
+              <div class="thumbnail">
+                <label
+                  for="post-thumbnail"
+                  data-i18n="createPost.thumbnail"
+                ></label>
+                <input
+                  type="file"
+                  id="post-thumbnail"
+                  accept="image/*"
+                  onchange="previewImage()"
+                />
+                <div id="thumbnail-preview" class="thumbnail-preview"></div>
+              </div>
+              <div class="modal-footer">
+                <button class="submit-btn" onclick="submitPost()">
+                  <span data-i18n="createPost.submit"></span>
+                  <div class="loader"></div>
+                </button>
+                <button
+                  class="cancel-btn"
+                  onclick="closeModal()"
+                  data-i18n="createPost.cancel"
+                ></button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </main>
-    <div id="chats"></div>
+      </main>
+      <div id="chats"></div>
+    </div>
     <div id="footer"></div>
     <script src="./scripts/loading.js"></script>
     <script src="./scripts/config.js"></script>

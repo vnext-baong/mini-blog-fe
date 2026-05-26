@@ -7,13 +7,24 @@ async function getPostDetail() {
       const post = await res.json();
       const postDetail = document.getElementById("post-detail");
       postDetail.innerHTML = `
+      <div class="breadcrumb">
+        <a href="index.html" class="back-btn">
+          <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> 
+          Trang chủ
+        </a>
+      </div>
       <div class='post-header'>
         <h1 class="title">${window.escapeHTML(post.title)}</h1>
-        <p class="created-at" data-timestamp="${post.createdAt}">${formatTimeAgo(post.createdAt)}</p>
+        <div class="post-meta">
+          <div class="author-info">
+            <img src="${post.author?.avatar ? API_URL + post.author.avatar : "./assets/img/avt.jpg"}" alt="Avatar" class="author-avatar" onerror="this.src='./assets/img/avt.jpg'"/>
+            <span class="author-name">${window.escapeHTML(post.author?.name || "Ẩn danh")}</span>
+          </div>
+          <span class="created-at" data-timestamp="${post.createdAt}">• ${formatTimeAgo(post.createdAt)}</span>
+        </div>
       </div>
-      <img src='${post.thumbnail ? API_URL + post.thumbnail : "./assets/img/image.png"}' alt='Thumbnail' class='thumbnail'/>
-      <p class="content">${window.escapeHTML(post.content)}</p>
-      <p class="author">${window.escapeHTML(post.author.name)}</p>
+      <img src='${post.thumbnail}' onerror="this.style.display='none'" alt='Thumbnail' class='thumbnail'/>
+      <div class="content">${post.content}</div>
     `;
       postId = post.id;
       getComments();
@@ -36,11 +47,11 @@ async function getComments() {
         commentElement.classList.add("comment");
         commentElement.innerHTML = `
         <div class='comment-header'>
-        <img src='./assets/img/avt.jpg' alt='Avatar' class='avatar' height='30' width='30'/>
-        <p class="comment-author">${window.escapeHTML(comment.author.name)}</p>
-        <p class="comment-created-at" data-timestamp="${comment.createdAt}">${formatTimeAgo(comment.createdAt)}</p>
+          <img src='${comment.author?.avatar ? API_URL + comment.author.avatar : "./assets/img/avt.jpg"}' onerror="this.src='./assets/img/avt.jpg'" alt='Avatar' class='avatar' height='36' width='36'/>
+          <p class="comment-author">${window.escapeHTML(comment.author?.name || "Ẩn danh")}</p>
+          <span class="comment-created-at" data-timestamp="${comment.createdAt}">• ${formatTimeAgo(comment.createdAt)}</span>
         </div>
-        <p class="comment-content">${window.escapeHTML(comment.content)}</p>
+        <div class="comment-content">${window.escapeHTML(comment.content)}</div>
       `;
         commentList.appendChild(commentElement);
       });
