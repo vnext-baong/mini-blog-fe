@@ -1,6 +1,7 @@
 .post-detail {
-  margin: 40px auto;
-  padding: 40px;
+  margin: 0px auto;
+  padding: 0 40px;
+  max-width: 900px;
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -106,9 +107,10 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 .comments {
-  margin-top: 40px;
-  background-color: #ffffff;
+  margin: 20px auto;
   padding: 40px;
+  max-width: 900px;
+  background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }

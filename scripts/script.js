@@ -131,7 +131,7 @@ async function stateRightHeader() {
         <div class="dropdown-content user-dropdown-content" style="min-width: 180px; top: 110%; right: 0;">
           <a href="profile.html" class="dropdown-item" data-i18n="user.editProfile">Sửa thông tin</a>
           <a href="profile.html?tab=password" class="dropdown-item" data-i18n="user.changePassword">Đổi mật khẩu</a>
-          <a href="/login.html" class="dropdown-item" id="logout" data-i18n="auth.logout" style="color: #d32f2f;">Đăng xuất</a>
+          <a href="login.html" class="dropdown-item" id="logout" data-i18n="auth.logout" style="color: #d32f2f;">Đăng xuất</a>
         </div>
       </div>
     `;

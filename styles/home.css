@@ -4,6 +4,7 @@ main {
 
 body.no-sidebar main {
   width: 100%;
+  height: 100vh;
 }
 
 .container {
