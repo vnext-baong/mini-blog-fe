@@ -5,7 +5,9 @@
   position: relative;
   margin-top: 64px;
 }
-
+main {
+  width: 100%;
+}
 .footer::before {
   content: "";
   position: absolute;

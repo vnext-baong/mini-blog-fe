@@ -96,15 +96,15 @@ async function register() {
     });
     const data = await response.json();
     if (response.ok) {
-      showToast("success", i18next.t("toast.registerSuccess"));
+      showToast("success", i18next.t("messages.registerSuccess"));
       setTimeout(() => {
-        window.location.href = "sent-email.html";
+        window.location.href = `sent-email.html?email=${encodeURIComponent(email)}`;
       }, 1000);
     } else {
-      showToast("error", data.message || i18next.t("toast.registerFailure"));
+      showToast("error", data.message || i18next.t("messages.registerFailure"));
     }
   } catch (error) {
-    showToast("error", i18next.t("toast.registerFailure"));
+    showToast("error", i18next.t("messages.registerFailure"));
   } finally {
     btnLoading.stop(document.querySelector(".submit-btn"));
   }

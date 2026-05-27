@@ -37,6 +37,12 @@ function updateContent() {
     element.setAttribute("placeholder", i18next.t(key));
   });
 
+  const titles = document.querySelectorAll("[data-i18n-title]");
+  titles.forEach((element) => {
+    const key = element.getAttribute("data-i18n-title");
+    element.setAttribute("title", i18next.t(key));
+  });
+
   const timeElements = document.querySelectorAll("[data-timestamp]");
   timeElements.forEach((element) => {
     const timestamp = element.getAttribute("data-timestamp");

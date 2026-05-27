@@ -22,7 +22,13 @@
     "login": "ログイン",
     "register": "登録",
     "logout": "ログアウト",
-    "pleaseLogin": "続行するにはログインしてください"
+    "pleaseLogin": "続行するにはログインしてください",
+    "sentMail": "メールが送信されました",
+    "sentMailMessage": "メールを確認してメール認証を行ってください。メールが届かない場合は、迷惑メールフォルダを確認するか、もう一度送信をお試しください。",
+    "backToLogin": "ログインに戻る",
+    "resendEmail": "メールを再送信",
+    "registerFailure": "登録に失敗しました。もう一度お試しください。",
+    "registerSuccess": "登録に成功しました！ログインしてください。"
   },
   "validation": {
     "usernameRequired": "ユーザー名を入力してください",

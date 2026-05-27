@@ -25,8 +25,13 @@
     "register": "Đăng ký",
     "logout": "Đăng xuất",
     "pleaseLogin": "Vui lòng đăng nhập để tiếp tục",
-    "sentMail": "Email đã được gửi. Vui lòng kiểm tra hộp thư của bạn.",
-    "sentMailMessage": "Vui lòng kiểm tra hộp thư của bạn để xác minh email. Nếu bạn không nhận được email, hãy kiểm tra thư mục spam hoặc thử gửi lại."},
+    "sentMail": "Email đã được gửi",
+    "sentMailMessage": "Vui lòng kiểm tra hộp thư của bạn để xác minh email. Nếu bạn không nhận được email, hãy kiểm tra thư mục spam hoặc thử gửi lại.",
+    "backToLogin": "Quay lại đăng nhập",
+    "resendEmail": "Gửi lại email",
+    "registerFailure": "Đăng ký thất bại. Vui lòng thử lại.",
+    "registerSuccess": "Đăng ký thành công! Vui lòng đăng nhập."
+  },
   "validation": {
     "usernameRequired": "Vui lòng nhập tên đăng nhập",
     "passwordRequired": "Vui lòng nhập mật khẩu",

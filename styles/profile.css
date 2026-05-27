@@ -1,15 +1,14 @@
 .profile-container {
   max-width: 400px;
   position: relative;
-  margin: auto;
-  top: 50px;
+  margin: 50px auto auto auto;
 }
 
 .profile-container h2 {
   font-size: 36px;
   text-align: center;
   margin-bottom: 25px;
-  color: #007bff;
+  color: #000080;
 }
 
 .tab-menu {
@@ -34,12 +33,12 @@
 }
 
 .tab-btn:hover {
-  color: #007bff;
+  color: #000080;
 }
 
 .tab-btn.active {
-  border-bottom-color: #007bff;
-  color: #007bff;
+  border-bottom-color: #000080;
+  color: #000080;
 }
 
 .tab-content {
@@ -91,37 +90,13 @@
 
 .form-group input:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
-}
-
-.tab-content label {
-  margin-bottom: 5px;
-  font-weight: 600;
-  color: #333;
-}
-
-.tab-content input {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
-}
-
-.tab-content input:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  border-color: #000080;
 }
 
 .tab-content button:not(.toggle-password) {
   padding: 12px 20px;
   border: none;
-  background-color: #007bff;
+  background-color: #000080;
   color: #fff;
   cursor: pointer;
   font-size: 16px;
@@ -132,7 +107,7 @@
 }
 
 .tab-content button:not(.toggle-password):hover {
-  background-color: #0056b3;
+  background-color: #0000cd;
 }
 
 .tab-content button:not(.toggle-password):disabled {
@@ -160,12 +135,13 @@
   align-items: center;
   justify-content: center;
   width: auto;
+  color: #333;
 }
 
 .btn-save {
   font-size: 16px;
   padding: 12px 20px;
-  background-color: #007bff;
+  background-color: #000080;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -175,21 +151,21 @@
   width: 100%;
 }
 
-.btn:hover {
-  background-color: #0056b3;
+.btn-save:hover, .btn:hover {
+  background-color: #0000cd;
 }
 
-.btn:disabled {
+.btn-save:disabled, .btn:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
-.btn.is-loading {
+.btn.is-loading, .btn-save.is-loading {
   position: relative;
-  color: transparent;
+  color: transparent !important;
 }
 
-.btn.is-loading::after {
+.btn.is-loading::after, .btn-save.is-loading::after {
   content: "";
   position: absolute;
   width: 16px;
@@ -209,3 +185,4 @@
     transform: rotate(360deg);
   }
 }
+

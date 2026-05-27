@@ -24,9 +24,14 @@ async function getPostDetail() {
         </div>
       </div>
       <img src='${post.thumbnail}' onerror="this.style.display='none'" alt='Thumbnail' class='thumbnail'/>
-      <div class="content">${post.content}</div>
+      <div class="content ql-snow"><div class="ql-editor">${post.content}</div></div>
     `;
       postId = post.id;
+      if (typeof hljs !== "undefined") {
+        document.querySelectorAll("pre").forEach((block) => {
+          hljs.highlightElement(block);
+        });
+      }
       getComments();
     }
   } catch (error) {
