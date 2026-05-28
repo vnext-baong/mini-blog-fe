@@ -761,6 +761,14 @@ body.no-sidebar main {
   gap: 6px;
 }
 
+.pagination .pages {
+  margin: 0 12px;
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  flex-direction: row;
+}
+
 .pagination select {
   padding: 6px 10px;
   font-size: 14px;
@@ -803,6 +811,7 @@ body.no-sidebar main {
 .pagination .page-btn {
   width: 36px;
   height: 36px;
+  margin: 0 4px;
   padding: 0;
   font-size: 14px;
   font-weight: 600;

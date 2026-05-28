@@ -10,8 +10,8 @@ async function getPostDetail() {
       <div class="breadcrumb">
         <a href="index.html" class="back-btn">
           <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> 
-          Trang chủ
-        </a>
+          <span data-i18n="header.home">Trang chủ</span>
+        </a>  
       </div>
       <div class='post-header'>
         <h1 class="title">${window.escapeHTML(post.title)}</h1>
@@ -32,6 +32,7 @@ async function getPostDetail() {
           hljs.highlightElement(block);
         });
       }
+      if (typeof updateContent === "function") updateContent();
       getComments();
     }
   } catch (error) {
@@ -60,6 +61,7 @@ async function getComments() {
       `;
         commentList.appendChild(commentElement);
       });
+      if (typeof updateContent === "function") updateContent();
       console.log(comments);
     }
   } catch (error) {

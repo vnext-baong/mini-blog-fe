@@ -330,7 +330,6 @@ function renderTopicsBar(container, topicsList) {
   controlsBar.style.gap = "16px";
   controlsBar.style.marginBottom = "22px";
 
-  // Update topicsBar to remove its bottom margin since container manages it
   topicsBar.style.borderBottom = "none";
   topicsBar.style.marginBottom = "0";
 
@@ -439,7 +438,7 @@ function renderEmptyState(grid, search, topic) {
 }
 
 function getPosts(
-  limit = 6,
+  limit = 5,
   page = 1,
   search = currentSearch,
   topic = currentTopic,
@@ -457,6 +456,7 @@ function getPosts(
   showSkeletonLoading(postsContainer, parseInt(limit));
 
   const topicId = getTopicId(topic);
+  console.log("Fetching posts with params:", { limit, page, search, topicId });
   let url = `${API_URL}/posts?limit=${limit}&page=${page}`;
   if (search) url += `&search=${encodeURIComponent(search)}`;
   if (topicId) url += `&topicId=${encodeURIComponent(topicId)}`;
@@ -514,7 +514,7 @@ function renderPagination(total, limit, page) {
       pageBtn.addEventListener("click", () => {
         currentPage = i;
         getPosts(
-          document.querySelector(".pagination select")?.value || 6,
+          document.querySelector(".pagination select")?.value || 5,
           currentPage,
         );
         window.scrollTo({
@@ -542,7 +542,7 @@ function executeSearch(searchValue, forceRedirect = false) {
   }
   currentPage = 1;
   getPosts(
-    document.querySelector(".pagination select")?.value || 6,
+    document.querySelector(".pagination select")?.value || 5,
     1,
     searchValue,
   );
@@ -593,7 +593,7 @@ function prevPage() {
   if (currentPage > 1) {
     currentPage--;
     getPosts(
-      document.querySelector(".pagination select")?.value || 6,
+      document.querySelector(".pagination select")?.value || 5,
       currentPage,
     );
     window.scrollTo({
@@ -606,7 +606,7 @@ function nextPage() {
   if (currentPage < totalPage) {
     currentPage++;
     getPosts(
-      document.querySelector(".pagination select")?.value || 6,
+      document.querySelector(".pagination select")?.value || 5,
       currentPage,
     );
     window.scrollTo({
@@ -621,7 +621,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (urlParams.get("topic")) currentTopic = urlParams.get("topic");
   if (urlParams.get("search")) currentSearch = urlParams.get("search");
 
-  getPosts(6, 1);
+  getPosts(5, 1);
   updateCreatePostAvatar();
 });
 
