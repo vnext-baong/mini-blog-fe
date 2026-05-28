@@ -330,7 +330,6 @@ function renderTopicsBar(container, topicsList) {
   controlsBar.style.gap = "16px";
   controlsBar.style.marginBottom = "22px";
 
-  // Update topicsBar to remove its bottom margin since container manages it
   topicsBar.style.borderBottom = "none";
   topicsBar.style.marginBottom = "0";
 

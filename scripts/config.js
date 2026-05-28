@@ -1,6 +1,11 @@
 const API_URL = "https://mini-blog-32rh.onrender.com";
 // const API_URL = "http://localhost:3000";
 
+// Google OAuth
+const GOOGLE_CLIENT_ID =
+  "607101444152-huca55fpfjtfejrbva6egvh6llclgsna.apps.googleusercontent.com";
+const GOOGLE_REDIRECT_URI = `${API_URL}/auth-google`;
+
 const originalFetch = window.fetch;
 window.fetch = async function (...args) {
   const response = await originalFetch(...args);

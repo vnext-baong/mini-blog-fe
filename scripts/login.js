@@ -1,8 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-  validateInput(document.getElementById("username"));
-  validateInput(document.getElementById("password"));
-});
-
 document.getElementById("password").addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     login();
@@ -42,8 +37,8 @@ async function login() {
     });
     const data = await response.json();
     if (response.ok) {
-      document.cookie = `ac=${data.accessToken}; path=/; max-age=3600; secure; samesite=strict`;
-      document.cookie = `rf=${data.refreshToken}; path=/; max-age=604800; secure; samesite=strict`;
+      document.cookie = `ac=${data.accessToken}; path=/; max-age=3600; SameSite=Lax`;
+      document.cookie = `rf=${data.refreshToken}; path=/; max-age=604800; SameSite=Lax`;
       const userData = await getMe(data.accessToken);
       localStorage.setItem("user", JSON.stringify(userData));
       showToast("success", i18next.t("messages.loginSuccess"));
@@ -100,3 +95,36 @@ if (loginTogglePassword) {
               />
 `;
 }
+
+function loginWithGoogle() {
+  const scope = encodeURIComponent("email profile");
+  const redirectUri = encodeURIComponent(GOOGLE_REDIRECT_URI);
+  const googleAuthUrl =
+    `https://accounts.google.com/o/oauth2/v2/auth` +
+    `?client_id=${GOOGLE_CLIENT_ID}` +
+    `&redirect_uri=${redirectUri}` +
+    `&response_type=code` +
+    `&scope=${scope}` +
+    `&access_type=offline` +
+    `&prompt=consent`;
+
+  window.location.href = googleAuthUrl;
+}
+
+(function handleGoogleLoginErrors() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("isLoginByGoogle") === "false") {
+    showToast(
+      "error",
+      i18next.t("messages.emailNotVerified") ||
+        "Email chưa được xác minh. Vui lòng xác minh email trước.",
+    );
+  }
+  if (params.get("oauth") === "false") {
+    showToast(
+      "error",
+      i18next.t("messages.googleLoginError") ||
+        "Đăng nhập bằng Google thất bại. Vui lòng thử lại.",
+    );
+  }
+})();

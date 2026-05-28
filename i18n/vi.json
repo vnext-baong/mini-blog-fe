@@ -30,7 +30,11 @@
     "backToLogin": "Quay lại đăng nhập",
     "resendEmail": "Gửi lại email",
     "registerFailure": "Đăng ký thất bại. Vui lòng thử lại.",
-    "registerSuccess": "Đăng ký thành công! Vui lòng đăng nhập."
+    "registerSuccess": "Đăng ký thành công! Vui lòng đăng nhập.",
+    "loginGoogle": "Đăng nhập bằng Google",
+    "or": "hoặc",
+    "processing": "Đang xử lý...",
+    "pleaseWait": "Vui lòng đợi trong khi chúng tôi hoàn tất đăng nhập."
   },
   "validation": {
     "usernameRequired": "Vui lòng nhập tên đăng nhập",
@@ -50,7 +54,9 @@
     "registerSuccess": "Đăng ký thành công! Vui lòng đăng nhập.",
     "registerError": "Đăng ký thất bại. Vui lòng thử lại.",
     "loginRequired": "Bạn cần đăng nhập để đăng bài viết",
-    "verifyEmail": "Vui lòng xác minh email của bạn để tiếp tục."
+    "verifyEmail": "Vui lòng xác minh email của bạn để tiếp tục.",
+    "emailNotVerified": "Email chưa được xác minh. Vui lòng xác minh email trước.",
+    "googleLoginError": "Đăng nhập bằng Google thất bại. Vui lòng thử lại."
   },
   "createPost": {
     "createPost": "Tạo bài viết mới",

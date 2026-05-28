@@ -28,7 +28,11 @@
     "sentMail": "Email has been sent",
     "sentMailMessage": "Please check your inbox to verify your email. If you don't receive the email, please check your spam folder or try resending.",
     "backToLogin": "Back to login",
-    "resendEmail": "Resend Email"
+    "resendEmail": "Resend Email",
+    "loginGoogle": "Sign in with Google",
+    "or": "or",
+    "processing": "Processing...",
+    "pleaseWait": "Please wait while we complete your login."
   },
   "validation": {
     "usernameRequired": "Please enter username",
@@ -51,7 +55,9 @@
     "verifyEmail": "Please verify your email to continue.",
     "resendEmail": "Resend Email",
     "resendSuccess": "Verification email resent! Please check your inbox.",
-    "resendError": "Failed to resend verification email. Please try again."
+    "resendError": "Failed to resend verification email. Please try again.",
+    "emailNotVerified": "Email not verified. Please verify your email first.",
+    "googleLoginError": "Google login failed. Please try again."
   },
   "createPost": {
     "createPost": "Create New Post",

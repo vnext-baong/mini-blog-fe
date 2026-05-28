@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Blog - Đăng nhập thành công</title>
+    <link rel="stylesheet" href="../styles/login.css" />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Google+Sans+Code:ital,wght,MONO@0,300..800,1;1,300..800,1&family=Playwrite+IE:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+    <style>
+      .login-success-container {
+        max-width: 400px;
+        margin: auto;
+        position: relative;
+        top: 200px;
+        text-align: center;
+      }
+      .login-success-container h2 {
+        font-size: 28px;
+        color: #000080;
+        margin-bottom: 16px;
+      }
+      .login-success-container p {
+        font-size: 16px;
+        color: #555;
+      }
+      .spinner {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        margin-top: 20px;
+        border: 4px solid #ccc;
+        border-top-color: #000080;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="login-success-container">
+        <h2 data-i18n="auth.processing">Đang xử lý...</h2>
+        <p data-i18n="auth.pleaseWait">
+          Vui lòng đợi trong khi chúng tôi hoàn tất đăng nhập.
+        </p>
+        <div class="spinner"></div>
+      </div>
+      <div id="toast-container" class="toast-container"></div>
+    </main>
+    <script src="../scripts/loading.js"></script>
+    <script src="../scripts/config.js"></script>
+    <script src="../scripts/translator.js"></script>
+    <script src="../scripts/script.js"></script>
+    <script>
+      (async function handleLoginSuccess() {
+        const params = new URLSearchParams(window.location.search);
+        const accessToken = params.get("ac");
+        const refreshToken = params.get("rf");
+
+        if (!accessToken || !refreshToken) {
+          showToast(
+            "error",
+            i18next.t("messages.googleLoginError") ||
+              "Đăng nhập bằng Google thất bại. Vui lòng thử lại.",
+          );
+          setTimeout(() => {
+            window.location.href = "../login.html";
+          }, 2000);
+          return;
+        }
+
+        document.cookie = `ac=${accessToken}; path=/; max-age=3600; SameSite=Lax`;
+        document.cookie = `rf=${refreshToken}; path=/; max-age=604800; SameSite=Lax`;
+
+        try {
+          const userData = await getMe(accessToken);
+          if (userData) {
+            localStorage.setItem("user", JSON.stringify(userData));
+            showToast(
+              "success",
+              i18next.t("messages.loginSuccess") || "Đăng nhập thành công!",
+            );
+            setTimeout(() => {
+              const userRoles = userData.roles;
+              if (userRoles == "admin") {
+                window.location.href = "../admin-maintenance.html";
+              } else {
+                window.location.href = "../index.html";
+              }
+            }, 1000);
+          } else {
+            throw new Error("Failed to get user data");
+          }
+        } catch (error) {
+          showToast(
+            "error",
+            i18next.t("messages.googleLoginError") ||
+              "Đăng nhập bằng Google thất bại. Vui lòng thử lại.",
+          );
+          setTimeout(() => {
+            window.location.href = "../login.html";
+          }, 2000);
+        }
+      })();
+    </script>
+  </body>
+</html>
