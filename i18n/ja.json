@@ -32,7 +32,17 @@
     "loginGoogle": "Googleでログイン",
     "or": "または",
     "processing": "処理中...",
-    "pleaseWait": "ログインを完了するまでお待ちください。"
+    "pleaseWait": "ログインを完了するまでお待ちください。",
+    "resetPassword": "パスワードをリセット",
+    "newPassword": "新しいパスワード",
+    "newPasswordPlaceholder": "新しいパスワードを入力...",
+    "confirmNewPassword": "新しいパスワード確認",
+    "confirmNewPasswordPlaceholder": "新しいパスワードを確認...",
+    "resetPasswordBtn": "パスワードをリセット",
+    "forgotPassword": "パスワードをお忘れですか？",
+    "forgotPasswordDesc": "メールアドレスを入力してください。パスワードリセットの手順をお送りします。",
+    "sendResetLink": "リセットリンクを送信"
+
   },
   "validation": {
     "usernameRequired": "ユーザー名を入力してください",

@@ -34,7 +34,17 @@
     "loginGoogle": "Đăng nhập bằng Google",
     "or": "hoặc",
     "processing": "Đang xử lý...",
-    "pleaseWait": "Vui lòng đợi trong khi chúng tôi hoàn tất đăng nhập."
+    "pleaseWait": "Vui lòng đợi trong khi chúng tôi hoàn tất đăng nhập.",
+    "resetPassword": "Đặt lại mật khẩu",
+    "newPassword": "Mật khẩu mới",
+    "newPasswordPlaceholder": "Nhập mật khẩu mới...",
+    "confirmNewPassword": "Xác nhận mật khẩu mới",
+    "confirmNewPasswordPlaceholder": "Xác nhận mật khẩu mới...",
+    "resetPasswordBtn": "Đặt lại mật khẩu",
+    "forgotPassword": "Quên mật khẩu?",
+    "forgotPasswordDesc": "Nhập địa chỉ email của bạn và chúng tôi sẽ gửi hướng dẫn để đặt lại mật khẩu.",
+    "sendResetLink": "Gửi liên kết đặt lại"
+
   },
   "validation": {
     "usernameRequired": "Vui lòng nhập tên đăng nhập",
