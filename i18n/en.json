@@ -32,7 +32,16 @@
     "loginGoogle": "Sign in with Google",
     "or": "or",
     "processing": "Processing...",
-    "pleaseWait": "Please wait while we complete your login."
+    "pleaseWait": "Please wait while we complete your login.",
+    "resetPassword": "Reset Password",
+    "newPassword": "New Password",
+    "newPasswordPlaceholder": "Enter new password...",
+    "confirmNewPassword": "Confirm New Password",
+    "confirmNewPasswordPlaceholder": "Confirm new password...",
+    "resetPasswordBtn": "Reset Password",
+    "forgotPassword": "Forgot Password?",
+    "forgotPasswordDesc": "Enter your email address and we'll send you instructions to reset your password.",
+    "sendResetLink": "Send Reset Link"
   },
   "validation": {
     "usernameRequired": "Please enter username",
